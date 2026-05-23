@@ -416,11 +416,40 @@ select.fi{appearance:none;cursor:none}
 .wa-float:hover{transform:scale(1.1)}
 
 /* AI Chat */
-#nh-chat{position:fixed;bottom:170px;right:36px;z-index:9000;display:none;width:340px;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.25);background:#fff}
-#nh-chat-btn{position:fixed;bottom:160px;right:36px;z-index:9001;width:52px;height:52px;border-radius:50%;background:#C4973A;border:none;color:#fff;font-size:1.3rem;cursor:pointer;box-shadow:0 6px 24px rgba(196,151,58,.5)}
-/* PiP Video */
-.pip-video{position:fixed;bottom:20px;right:20px;width:260px;z-index:9999;border-radius:12px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,.3);background:#000}
-.pip-video video{width:100%;height:auto;display:block}
+#nh-fab{position:fixed;bottom:160px;right:36px;z-index:9100;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#C4973A,#E8C97A);border:none;color:#fff;font-size:1.4rem;cursor:pointer;box-shadow:0 8px 28px rgba(196,151,58,.55);transition:all .3s;display:flex;align-items:center;justify-content:center}
+#nh-fab:hover{transform:scale(1.1)}
+#nh-fab .fab-pulse{position:absolute;top:-3px;right:-3px;width:14px;height:14px;background:#25D366;border-radius:50%;border:2px solid #fff;animation:nhpulse 2s infinite}
+@keyframes nhpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
+#nh-box{position:fixed;bottom:228px;right:36px;z-index:9099;width:360px;border-radius:20px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.22);transform:scale(.85) translateY(20px);opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.34,1.56,.64,1);background:#fff}
+#nh-box.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
+.nh-head{background:linear-gradient(135deg,#9A7228,#C4973A);padding:16px 18px;display:flex;align-items:center;gap:12px}
+.nh-head-av{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.nh-head-info{flex:1}
+.nh-head-name{font-size:14px;font-weight:600;color:#fff;margin:0}
+.nh-head-status{font-size:11px;color:rgba(255,255,255,.8);margin:2px 0 0;display:flex;align-items:center;gap:5px}
+.nh-head-status::before{content:'';width:7px;height:7px;border-radius:50%;background:#4ADE80;flex-shrink:0}
+.nh-msgs{height:320px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:#F9F7F4;scroll-behavior:smooth}
+.nh-msgs::-webkit-scrollbar{width:3px}
+.nh-msgs::-webkit-scrollbar-thumb{background:#C4973A;border-radius:3px}
+.nh-msg{max-width:82%;padding:11px 14px;font-size:13px;line-height:1.55;animation:nhpop .25s ease}
+@keyframes nhpop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.nh-msg.bot{background:#fff;border:1px solid #EEE;border-radius:16px 16px 16px 3px;color:#1C1C1C;align-self:flex-start;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.nh-msg.user{background:linear-gradient(135deg,#C4973A,#9A7228);color:#fff;border-radius:16px 16px 3px 16px;align-self:flex-end}
+.nh-msg.typing{background:#fff;border:1px solid #EEE;border-radius:16px 16px 16px 3px;align-self:flex-start;padding:14px 18px}
+.nh-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#C4973A;animation:nhdot 1.2s infinite;margin:0 2px}
+.nh-dot:nth-child(2){animation-delay:.2s}
+.nh-dot:nth-child(3){animation-delay:.4s}
+@keyframes nhdot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+.nh-quick{padding:10px 14px;background:#fff;border-top:1px solid #F0EDE8;display:flex;gap:6px;flex-wrap:wrap}
+.nh-qbtn{font-size:11px;padding:6px 12px;border:1.5px solid #C4973A;border-radius:20px;color:#C4973A;background:transparent;cursor:pointer;transition:all .2s;white-space:nowrap}
+.nh-qbtn:hover{background:#C4973A;color:#fff}
+.nh-input-row{display:flex;gap:8px;padding:12px 14px;background:#fff;border-top:1px solid #F0EDE8;align-items:center}
+#nh-input{flex:1;border:1.5px solid #E8E4DC;border-radius:24px;padding:10px 16px;font-size:13px;outline:none;transition:border-color .3s;background:#FAFAF8;color:#1C1C1C}
+#nh-input:focus{border-color:#C4973A}
+#nh-send{width:38px;height:38px;border-radius:50%;background:#C4973A;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;transition:all .2s}
+#nh-send:hover{background:#9A7228}
+.nh-powered{text-align:center;font-size:10px;color:#B8B4AC;padding:7px;background:#fff;letter-spacing:.05em}
+@media(max-width:480px){#nh-box{width:calc(100vw - 24px);right:12px;bottom:120px}#nh-fab{bottom:60px;right:16px}}
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:1024px){
@@ -1127,9 +1156,34 @@ select.fi{appearance:none;cursor:none}
   <i class="fa fa-arrow-up"></i>
 </button>
 
-<!-- AI Chat Button -->
-<div id="nh-chat"></div>
-<button id="nh-chat-btn" onclick="toggleChat()">💬</button>
+<!-- AI Chat -->
+<button id="nh-fab" onclick="nhToggle()" aria-label="Chat with Neo Homez">
+  <span>💬</span>
+  <span class="fab-pulse"></span>
+</button>
+<div id="nh-box">
+  <div class="nh-head">
+    <div class="nh-head-av">🏠</div>
+    <div class="nh-head-info">
+      <p class="nh-head-name">Aria — Neo Homez Assistant</p>
+      <p class="nh-head-status">Online · Replies instantly</p>
+    </div>
+  </div>
+  <div class="nh-msgs" id="nh-msgs"></div>
+  <div class="nh-quick" id="nh-quick">
+    <button class="nh-qbtn" onclick="nhQuick('What are your pricing packages?')">💰 Pricing</button>
+    <button class="nh-qbtn" onclick="nhQuick('What services do you offer?')">🛋️ Services</button>
+    <button class="nh-qbtn" onclick="nhQuick('How long does a project take?')">⏱️ Timeline</button>
+    <button class="nh-qbtn" onclick="nhQuick('I want to book a free consultation')">📅 Book Now</button>
+    <button class="nh-qbtn" onclick="nhQuick('Which areas in Bangalore do you serve?')">📍 Areas</button>
+    <button class="nh-qbtn" onclick="nhQuick('What warranty do you provide?')">🛡️ Warranty</button>
+  </div>
+  <div class="nh-input-row">
+    <input id="nh-input" placeholder="Ask me anything about interiors…" onkeydown="if(event.key==='Enter')nhSend()"/>
+    <button id="nh-send" onclick="nhSend()">➤</button>
+  </div>
+  <div class="nh-powered">Powered by AI · Neo Homez Interior</div>
+</div>
 <a 
   href="https://wa.me/+918747826666"
   class="wa-float"
@@ -1258,55 +1312,132 @@ function toggleFaq(btn){
   if(!isOpen)item.classList.add('open');
 }
 
-/* AI Chatbot */
-const NH_SYSTEM=`You are a helpful assistant for Neo Homez Interior, Bangalore. Services: full home, modular kitchen, bedroom, living room, bathroom, home office. Pricing: Essential ₹1200/sqft, Premium ₹1800/sqft, Luxury ₹2500/sqft. All include free 3D design. Areas: Whitefield, Koramangala, HSR Layout, Indiranagar, Jayanagar, JP Nagar, Sarjapur Road and all Bangalore. Contact: +91 87478 26666. Keep replies short and friendly. Suggest booking a free consultation.`;
+/* AI Chatbot — Advanced */
+const NH_SYSTEM=`You are Aria, the friendly AI assistant for Neo Homez Interior — a premium residential interior design company in Bangalore, India.
 
-function toggleChat(){
-  const box=document.getElementById('nh-chat');
-  const btn=document.getElementById('nh-chat-btn');
-  if(box.style.display==='none'||box.style.display===''){
-    box.style.display='block';btn.textContent='✕';
-    if(!box.innerHTML.trim())initChat();
-  }else{box.style.display='none';btn.textContent='💬';}
-}
+SERVICES: Full Home Interior, Modular Kitchen, Living Room, Master Bedroom, Kids Room, Bathroom, Home Office, Foyer, Balcony, Full Villa.
 
-function initChat(){
-  document.getElementById('nh-chat').innerHTML=`
-  <div style="background:#C4973A;padding:12px 16px;display:flex;align-items:center;gap:10px">
-    <div style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:16px">🏠</div>
-    <div><div style="color:#fff;font-size:13px;font-weight:600">Neo Homez Assistant</div><div style="color:rgba(255,255,255,.8);font-size:11px">● Online — Ask me anything</div></div>
-  </div>
-  <div id="nhmsgs" style="height:260px;overflow-y:auto;padding:14px;background:#f9f9f9;display:flex;flex-direction:column;gap:8px">
-    <div style="background:#fff;border:1px solid #eee;border-radius:12px;border-bottom-left-radius:3px;padding:10px 12px;font-size:12px;max-width:85%">Hi! Ask me about our pricing, services, or book a free consultation! 😊</div>
-  </div>
-  <div style="padding:8px;background:#fff;border-top:1px solid #eee;display:flex;gap:6px;flex-wrap:wrap">
-    <button onclick="nhQuick('What are your pricing packages?')" style="font-size:10px;padding:4px 10px;border:1px solid #C4973A;border-radius:20px;color:#C4973A;background:none;cursor:pointer">Pricing</button>
-    <button onclick="nhQuick('What services do you offer?')" style="font-size:10px;padding:4px 10px;border:1px solid #C4973A;border-radius:20px;color:#C4973A;background:none;cursor:pointer">Services</button>
-    <button onclick="nhQuick('Which areas do you serve?')" style="font-size:10px;padding:4px 10px;border:1px solid #C4973A;border-radius:20px;color:#C4973A;background:none;cursor:pointer">Locations</button>
-  </div>
-  <div style="padding:10px;background:#fff;border-top:1px solid #eee;display:flex;gap:8px">
-    <input id="nhinput" placeholder="Ask anything..." onkeydown="if(event.key==='Enter')nhSend()" style="flex:1;border:1px solid #ddd;border-radius:20px;padding:8px 12px;font-size:12px;outline:none"/>
-    <button onclick="nhSend()" style="width:32px;height:32px;border-radius:50%;background:#C4973A;border:none;color:#fff;cursor:pointer;font-size:14px">➤</button>
-  </div>`;
-}
+PRICING:
+- Essential: ₹1,200/sqft — 1-2BHK, kitchen+1 bedroom, standard materials, 30-day delivery, 6-month warranty
+- Premium: ₹1,800/sqft — 3BHK full home, Hafele/Hettich hardware, 45-day delivery, 1-year warranty, project manager (MOST POPULAR)
+- Luxury: ₹2,500/sqft — Villas/penthouses, bespoke design, imported materials, senior designer, 60-day delivery, 2-year warranty
 
-function nhQuick(q){document.getElementById('nhinput').value=q;nhSend();}
+CURRENT OFFER: Free 3D design + 10% off full home package. Ends June 30 2026.
 
-async function nhSend(){
-  const input=document.getElementById('nhinput');
-  const msgs=document.getElementById('nhmsgs');
-  const text=input.value.trim();if(!text)return;input.value='';
-  msgs.innerHTML+=`<div style="background:#C4973A;color:#fff;border-radius:12px;border-bottom-right-radius:3px;padding:10px 12px;font-size:12px;max-width:85%;align-self:flex-end;margin-left:auto">${text}</div>`;
-  const t=document.createElement('div');
-  t.style.cssText='background:#fff;border:1px solid #eee;border-radius:12px;padding:10px 12px;font-size:12px;color:#999;max-width:85%';
-  t.textContent='Typing...';msgs.appendChild(t);msgs.scrollTop=msgs.scrollHeight;
-  try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:NH_SYSTEM,messages:[{role:'user',content:text}]})});
-    const data=await res.json();t.remove();
-    const reply=data.content?.[0]?.text||'Please call us at +91 87478 26666!';
-    msgs.innerHTML+=`<div style="background:#fff;border:1px solid #eee;border-radius:12px;border-bottom-left-radius:3px;padding:10px 12px;font-size:12px;max-width:85%">${reply}</div>`;
-  }catch(e){t.remove();msgs.innerHTML+=`<div style="background:#fff;border:1px solid #eee;border-radius:12px;padding:10px 12px;font-size:12px;max-width:85%">Please call +91 87478 26666!</div>`;}
+AREAS: Whitefield, Koramangala, HSR Layout, Indiranagar, Jayanagar, JP Nagar, Sarjapur Road, Electronic City, Hebbal, Yelahanka, Bannerghatta Road, Marathahalli, Bellandur, BTM Layout — all of Bangalore.
+
+TIMELINES: Full home 45-60 days, single room 15-20 days, kitchen only 10-15 days.
+
+MATERIALS: Hafele, Hettich, Greenply, CenturyPly, Saint-Gobain, Jaguar, Kohler.
+
+PROCESS: Call → Site Visit → 3D Design → Quote & Sign → Execution → Handover.
+
+CONTACT: +91 87478 26666, info@neohomezinterior.in, neohomezinterior.in
+Working hours: Mon-Sat 9AM-7PM, Sunday by appointment.
+
+KEY FACTS: 150+ projects, 5-star Google rated, zero cost overruns, on-time guarantee, no hidden costs, 1 senior designer per project, in-house execution team.
+
+RULES:
+- Keep replies to 2-4 sentences
+- Always end with a call-to-action (book free consultation or call/WhatsApp)
+- If someone wants to book, ask for their name, phone, project type and area
+- Never make up facts not listed above
+- For anything complex, offer to have the team call them`;
+
+let nhHistory=[];
+let nhOpen=false;
+let nhInit=false;
+
+window.nhToggle=function(){
+  nhOpen=!nhOpen;
+  const box=document.getElementById('nh-box');
+  const fab=document.getElementById('nh-fab');
+  box.classList.toggle('open',nhOpen);
+  fab.querySelector('span').textContent=nhOpen?'✕':'💬';
+  if(nhOpen&&!nhInit){
+    nhInit=true;
+    setTimeout(()=>nhBotMsg("Hi there! 👋 I'm Aria, your Neo Homez design consultant.\n\nI can help with pricing, services, timelines, and booking your free consultation. What would you like to know?"),400);
+  }
+};
+
+window.nhQuick=function(q){
+  document.getElementById('nh-quick').style.display='none';
+  nhUserMsg(q);
+  nhGetReply(q);
+};
+
+window.nhSend=function(){
+  const input=document.getElementById('nh-input');
+  const text=input.value.trim();
+  if(!text)return;
+  input.value='';
+  document.getElementById('nh-quick').style.display='none';
+  nhUserMsg(text);
+  nhGetReply(text);
+};
+
+function nhUserMsg(text){
+  nhHistory.push({role:'user',content:text});
+  const msgs=document.getElementById('nh-msgs');
+  const d=document.createElement('div');
+  d.className='nh-msg user';
+  d.textContent=text;
+  msgs.appendChild(d);
   msgs.scrollTop=msgs.scrollHeight;
+}
+
+function nhBotMsg(text){
+  const msgs=document.getElementById('nh-msgs');
+  const d=document.createElement('div');
+  d.className='nh-msg bot';
+  d.style.whiteSpace='pre-line';
+  d.textContent=text;
+  msgs.appendChild(d);
+  msgs.scrollTop=msgs.scrollHeight;
+  nhHistory.push({role:'assistant',content:text});
+}
+
+function nhShowTyping(){
+  const msgs=document.getElementById('nh-msgs');
+  const d=document.createElement('div');
+  d.className='nh-msg typing';
+  d.id='nh-typing';
+  d.innerHTML='<span class="nh-dot"></span><span class="nh-dot"></span><span class="nh-dot"></span>';
+  msgs.appendChild(d);
+  msgs.scrollTop=msgs.scrollHeight;
+}
+
+function nhRemoveTyping(){
+  const t=document.getElementById('nh-typing');
+  if(t)t.remove();
+}
+
+async function nhGetReply(text){
+  nhShowTyping();
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key':'YOUR_API_KEY_HERE',
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-calls':'true'
+      },
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        system:NH_SYSTEM,
+        messages:nhHistory.slice(-10)
+      })
+    });
+    const data=await res.json();
+    nhRemoveTyping();
+    const reply=data.content?.[0]?.text||'Please call us at +91 87478 26666 or WhatsApp us!';
+    nhBotMsg(reply);
+  }catch(e){
+    nhRemoveTyping();
+    nhBotMsg('Sorry, I seem to be offline! Please call +91 87478 26666 or WhatsApp us directly. 🙏');
+  }
 }
 
 /* Smooth scroll */
