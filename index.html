@@ -1577,10 +1577,16 @@ const slides=document.querySelectorAll('.hero-slide');
 const dotsC=document.getElementById('heroDots');
 let curSlide=0;
 slides.forEach((_,i)=>{
-  const b=document.createElement('button');
-  b.className='hdot'+(i===0?' active':'');
-  b.onclick=()=>goSlide(i);
-  dotsC.appendChild(b);
+  const b = document.createElement('button');
+b.className = 'hdot' + (i === 0 ? ' active' : '');
+
+// ✅ FIX: accessibility name
+b.setAttribute("aria-label", "Go to slide " + (i + 1));
+b.setAttribute("type", "button");
+
+b.onclick = () => goSlide(i);
+
+dotsC.appendChild(b);
 });
 function goSlide(n){
   slides[curSlide].classList.remove('active');
