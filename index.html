@@ -983,6 +983,335 @@ select.fi{appearance:none;cursor:none}
   </div>
 </section>
 
+<!-- PREMIUM EMI CALCULATOR -->
+<section class="emi-section">
+  <div class="emi-container">
+
+    <div class="emi-left">
+      <span class="emi-tag">INTERIOR LOAN EMI CALCULATOR</span>
+
+      <h2>
+        Plan the spend <br>
+        before the spend.
+      </h2>
+
+      <p class="emi-description">
+        Our finance partners offer interior loans from 11% — 14%
+        across 12 to 84 months. Adjust the values below to get a
+        real-time EMI estimate instantly.
+      </p>
+
+      <!-- Loan Amount -->
+      <div class="slider-group">
+        <div class="slider-header">
+          <label>Loan Amount</label>
+          <span id="loanAmountValue">₹8.00 L</span>
+        </div>
+
+        <input type="range"
+          id="loanAmount"
+          min="100000"
+          max="5000000"
+          step="50000"
+          value="800000">
+      </div>
+
+      <!-- Interest Rate -->
+      <div class="slider-group">
+        <div class="slider-header">
+          <label>Interest Rate</label>
+          <span id="interestRateValue">11.50%</span>
+        </div>
+
+        <input type="range"
+          id="interestRate"
+          min="8"
+          max="18"
+          step="0.1"
+          value="11.5">
+      </div>
+
+      <!-- Tenure -->
+      <div class="slider-group">
+        <div class="slider-header">
+          <label>Tenure</label>
+          <span id="tenureValue">60 Months</span>
+        </div>
+
+        <input type="range"
+          id="tenure"
+          min="12"
+          max="84"
+          step="1"
+          value="60">
+      </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="emi-right">
+
+      <div class="emi-card">
+
+        <p class="emi-title">
+          Your Estimated Monthly EMI
+        </p>
+
+        <h1 id="emiAmount">
+          ₹17,594
+        </h1>
+
+        <p class="emi-subtext" id="emiDuration">
+          per month for 60 months
+        </p>
+
+        <div class="emi-breakdown">
+
+          <div class="breakdown-box">
+            <span>Total Payable</span>
+            <h3 id="totalPayable">₹10.56 L</h3>
+          </div>
+
+          <div class="breakdown-box">
+            <span>Principal</span>
+            <h3 id="principalAmount">₹8.00 L</h3>
+          </div>
+
+          <div class="breakdown-box">
+            <span>Total Interest</span>
+            <h3 id="interestAmount">₹2.56 L</h3>
+          </div>
+
+        </div>
+
+        <button class="finance-btn">
+          Speak to a Finance Partner
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .emi-section {
+    background: linear-gradient(135deg, #0f172a, #111827);
+    padding: 100px 20px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .emi-container {
+    max-width: 1300px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 450px;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .emi-tag {
+    color: #c9a46c;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+
+  .emi-left h2 {
+    font-size: 54px;
+    line-height: 1.1;
+    margin: 20px 0;
+    font-weight: 700;
+  }
+
+  .emi-description {
+    color: #d1d5db;
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 50px;
+    max-width: 650px;
+  }
+
+  .slider-group {
+    margin-bottom: 35px;
+  }
+
+  .slider-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  input[type="range"] {
+    width: 100%;
+    height: 8px;
+    border-radius: 20px;
+    outline: none;
+    appearance: none;
+    background: #374151;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #c9a46c;
+    cursor: pointer;
+    border: 4px solid white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+
+  .emi-card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 30px;
+    padding: 45px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+  }
+
+  .emi-title {
+    color: #d1d5db;
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  #emiAmount {
+    font-size: 56px;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+
+  .emi-subtext {
+    color: #9ca3af;
+    margin-bottom: 40px;
+  }
+
+  .emi-breakdown {
+    display: grid;
+    gap: 18px;
+    margin-bottom: 35px;
+  }
+
+  .breakdown-box {
+    background: rgba(255,255,255,0.06);
+    border-radius: 18px;
+    padding: 20px;
+  }
+
+  .breakdown-box span {
+    color: #9ca3af;
+    font-size: 14px;
+  }
+
+  .breakdown-box h3 {
+    margin-top: 8px;
+    font-size: 28px;
+    color: white;
+  }
+
+  .finance-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #c9a46c, #a67c45);
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: 16px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+
+  .finance-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(201,164,108,0.35);
+  }
+
+  @media(max-width: 992px) {
+
+    .emi-container {
+      grid-template-columns: 1fr;
+    }
+
+    .emi-left h2 {
+      font-size: 40px;
+    }
+
+    #emiAmount {
+      font-size: 44px;
+    }
+
+  }
+</style>
+
+<script>
+  const loanAmount = document.getElementById('loanAmount');
+  const interestRate = document.getElementById('interestRate');
+  const tenure = document.getElementById('tenure');
+
+  function formatIndianCurrency(num) {
+    return '₹' + num.toLocaleString('en-IN');
+  }
+
+  function formatLakhs(num) {
+    return '₹' + (num / 100000).toFixed(2) + ' L';
+  }
+
+  function calculateEMI() {
+
+    const P = parseFloat(loanAmount.value);
+    const annualRate = parseFloat(interestRate.value);
+    const N = parseInt(tenure.value);
+
+    const R = annualRate / 12 / 100;
+
+    const EMI =
+      (P * R * Math.pow(1 + R, N)) /
+      (Math.pow(1 + R, N) - 1);
+
+    const monthlyEMI = Math.round(EMI);
+    const totalPayable = monthlyEMI * N;
+    const totalInterest = totalPayable - P;
+
+    document.getElementById('loanAmountValue').innerText =
+      formatLakhs(P);
+
+    document.getElementById('interestRateValue').innerText =
+      annualRate.toFixed(2) + '%';
+
+    document.getElementById('tenureValue').innerText =
+      N + ' Months';
+
+    document.getElementById('emiAmount').innerText =
+      formatIndianCurrency(monthlyEMI);
+
+    document.getElementById('emiDuration').innerText =
+      `per month for ${N} months`;
+
+    document.getElementById('totalPayable').innerText =
+      formatLakhs(totalPayable);
+
+    document.getElementById('principalAmount').innerText =
+      formatLakhs(P);
+
+    document.getElementById('interestAmount').innerText =
+      formatLakhs(totalInterest);
+
+  }
+
+  loanAmount.addEventListener('input', calculateEMI);
+  interestRate.addEventListener('input', calculateEMI);
+  tenure.addEventListener('input', calculateEMI);
+
+  calculateEMI();
+</script>
+
 <!-- ─── CTA ─── -->
 <section id="cta">
   <div class="cta-topbar"></div>
