@@ -1389,11 +1389,11 @@ select.fi{appearance:none;cursor:none}
       </div>
     </div>
   <div class="reveal-r">
-  <div class="contact-form">
+ <form class="contact-form" id="contactForm">
     <div class="form-row">
       <div class="fg"><label class="fl" for="full-name">Full Name</label><input type="text" id="full-name" name="full-name" class="fi" placeholder="Your name"/></div>
       <div class="fg"><label class="fl" for="phone">Phone Number</label><input type="tel" id="phone" name="phone" class="fi" placeholder="+91 00000 00000"/></div>
-    </div>
+    </form>
     <div class="fg"><label class="fl" for="email">Email Address</label><input type="email" id="email" name="email" class="fi" placeholder="your@email.com"/></div>
     <div class="form-row">
       <div class="fg">
@@ -1422,7 +1422,7 @@ select.fi{appearance:none;cursor:none}
     </div>
     <div class="fg"><label class="fl" for="message">Tell Us About Your Project</label><textarea id="message" name="message" class="fi" placeholder="Describe your dream space..."></textarea></div>
     <p class="form-note" style="margin-bottom:12px;margin-top:0">⚡ We respond within 2 hours. Free consultation included.</p>
-    <button class="btn-submit" onclick="submitForm(this)"><span>Send Message</span> <i class="fa fa-arrow-right"></i></button>
+    <button type="submit" class="btn-submit"><span>Send Message</span> <i class="fa fa-arrow-right"></i></button>
   </div>
 </div>
 </div>
@@ -1777,5 +1777,70 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   });
 });
 </script>
+
+<script>
+
+document.getElementById("contactForm")
+.addEventListener("submit", function(e) {
+
+  e.preventDefault();
+
+  const formData = new FormData();
+
+  formData.append(
+    "entry.123456",
+    document.getElementById("full-name").value
+  );
+
+  formData.append(
+    "entry.234567",
+    document.getElementById("phone").value
+  );
+
+  formData.append(
+    "entry.345678",
+    document.getElementById("email").value
+  );
+
+  formData.append(
+    "entry.456789",
+    document.getElementById("project-type").value
+  );
+
+  formData.append(
+    "entry.567890",
+    document.getElementById("area").value
+  );
+
+  formData.append(
+    "entry.678901",
+    document.getElementById("budget-range").value
+  );
+
+  formData.append(
+    "entry.789012",
+    document.getElementById("message").value
+  );
+
+  fetch(
+    "https://docs.google.com/forms/d/e/1FAIpQLSevFem3Y6j5n-ONu40PPX0r6PwYbWb7bWTO6fv7BxStJWDaxQ/formResponse",
+    {
+      method: "POST",
+      mode: "no-cors",
+      body: formData
+    }
+  )
+  .then(() => {
+
+    alert("Message sent successfully!");
+
+    document.getElementById("contactForm").reset();
+
+  });
+
+});
+
+</script>
+
 </body>
 </html>
