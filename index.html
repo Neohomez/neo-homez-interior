@@ -21,6 +21,7 @@ content="Neo Homez Interior - Premium residential interior design in Bangalore. 
 
   gtag('config', 'G-NFLQ8GWSBG');
 </script>
+
 <!-- PERFORMANCE: Preconnect -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,9 +33,16 @@ content="Neo Homez Interior - Premium residential interior design in Bangalore. 
 <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 <link rel="dns-prefetch" href="https://images.unsplash.com">
 
-<!-- GOOGLE FONTS (OPTIMIZED) -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Google Fonts NON-BLOCKING FIX -->
+<link rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'">
 
+<noscript>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap">
+</noscript>
 <!-- FONT AWESOME (NON-BLOCKING) -->
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -60,7 +68,9 @@ content="Neo Homez Interior - Premium residential interior design in Bangalore. 
   --border:#E0D9CC;
   --font-display:'Playfair Display',Georgia,serif;
   --font-body:'DM Sans',sans-serif;
-  --font-accent:'Cormorant Garamond',Georgia,serif;
+  --font-display:'Playfair Display', Georgia, serif;
+--font-body:'DM Sans', system-ui, sans-serif;
+--font-accent:'Cormorant Garamond', Georgia, serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;font-size:16px}
