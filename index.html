@@ -568,7 +568,7 @@ select.fi{appearance:none;cursor:none}
 <nav id="nav">
   <a href="#hero" class="nav-brand">
    <img
-  src="NH_Logo.webp"
+  src="NH_Logo.png"
   alt="Neo Homez Interior Logo"
   width="75"
   height="75"
@@ -1465,54 +1465,204 @@ select.fi{appearance:none;cursor:none}
 </div>
 </section>
 
-<!-- ─── FOOTER ─── -->
-<<footer id="footer">
+<!-- ───────── FOOTER START ───────── -->
+<footer id="footer">
 
   <div class="footer-top">
 
+    <!-- Brand Section -->
     <div class="footer-col">
-      <div class="footer-brand-name">Neo Homez Interior</div>
-      <div class="footer-brand-sub">Luxury Interior Design · Bangalore</div>
+
+      <div class="footer-brand-name">
+        Neo Homez Interior
+      </div>
+
+      <div class="footer-brand-sub">
+        Luxury Interior Design · Bangalore
+      </div>
+
       <p class="footer-brand-desc">
-        Crafting extraordinary homes with elegance, precision, and modern luxury interiors.
+        Crafting extraordinary homes with elegance,
+        precision, and modern luxury interiors.
       </p>
 
       <div class="socials">
 
         <a href="https://instagram.com/neohomezinterior"
-           target="_blank" rel="noopener noreferrer"
+           target="_blank"
+           rel="noopener noreferrer"
            class="social-btn">
           <i class="fab fa-instagram"></i>
         </a>
 
         <a href="https://facebook.com/neohomezinterior"
-           target="_blank" rel="noopener noreferrer"
+           target="_blank"
+           rel="noopener noreferrer"
            class="social-btn">
           <i class="fab fa-facebook-f"></i>
         </a>
 
         <a href="https://linkedin.com/company/neohomezinterior"
-           target="_blank" rel="noopener noreferrer"
+           target="_blank"
+           rel="noopener noreferrer"
            class="social-btn">
           <i class="fab fa-linkedin-in"></i>
         </a>
 
         <a href="https://wa.me/918747826666"
-           target="_blank" rel="noopener noreferrer"
+           target="_blank"
+           rel="noopener noreferrer"
            class="social-btn">
           <i class="fab fa-whatsapp"></i>
         </a>
 
       </div>
+
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-col">
+
+      <h3 class="footer-heading">Quick Links</h3>
+
+      <a href="#rooms">Rooms</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+
+    </div>
+
+    <!-- Legal Links -->
+    <div class="footer-col">
+
+      <h3 class="footer-heading">Legal</h3>
+
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms & Conditions</a>
+
     </div>
 
   </div>
 
+  <!-- Footer Bottom -->
   <div class="footer-bottom">
     <p>© 2026 Neo Homez Interior. All Rights Reserved.</p>
   </div>
 
 </footer>
+<!-- ───────── FOOTER END ───────── -->
+
+<style>
+
+#footer{
+  background:#050505;
+  color:#fff;
+  padding:70px 8% 30px;
+  font-family:'Poppins',sans-serif;
+}
+
+.footer-top{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:60px;
+}
+
+.footer-col{
+  display:flex;
+  flex-direction:column;
+}
+
+.footer-brand-name{
+  font-size:42px;
+  font-weight:600;
+  margin-bottom:10px;
+  color:#fff;
+}
+
+.footer-brand-sub{
+  color:#caa54b;
+  letter-spacing:3px;
+  font-size:12px;
+  text-transform:uppercase;
+  margin-bottom:24px;
+}
+
+.footer-brand-desc{
+  color:#bdbdbd;
+  line-height:1.9;
+  max-width:320px;
+  margin-bottom:30px;
+}
+
+.footer-heading{
+  color:#caa54b;
+  font-size:18px;
+  margin-bottom:25px;
+  font-weight:600;
+}
+
+.footer-col a{
+  color:#bdbdbd;
+  text-decoration:none;
+  margin-bottom:14px;
+  transition:0.3s ease;
+  font-size:15px;
+}
+
+.footer-col a:hover{
+  color:#caa54b;
+  padding-left:4px;
+}
+
+.socials{
+  display:flex;
+  gap:14px;
+}
+
+.social-btn{
+  width:46px;
+  height:46px;
+  border:1px solid #333;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff !important;
+  transition:0.3s ease;
+}
+
+.social-btn:hover{
+  background:#caa54b;
+  border-color:#caa54b;
+}
+
+.footer-bottom{
+  border-top:1px solid #1a1a1a;
+  margin-top:50px;
+  padding-top:25px;
+  text-align:center;
+}
+
+.footer-bottom p{
+  color:#8a8a8a;
+  font-size:14px;
+}
+
+@media(max-width:768px){
+
+  .footer-top{
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+
+  .footer-brand-name{
+    font-size:34px;
+  }
+
+}
+
+</style>
 
 <!-- Back to top -->
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
