@@ -1,18 +1,18 @@
 <script>
-const slides = document.querySelectorAll('.slide');
-let index = 0;
+document.addEventListener("DOMContentLoaded", () => {
 
-function showNextSlide() {
+  const slides = document.querySelectorAll('.hero-slide');
+  let curSlide = 0;
 
-  const current = slides[index];
-  const nextIndex = (index + 1) % slides.length;
-  const next = slides[nextIndex];
+  function goNext() {
+    slides[curSlide].classList.remove('active');
 
-  current.classList.remove('active');
-  next.classList.add('active');
+    curSlide = (curSlide + 1) % slides.length;
 
-  index = nextIndex;
-}
+    slides[curSlide].classList.add('active');
+  }
 
-setInterval(showNextSlide, 3000);
+  setInterval(goNext, 5500);
+
+});
 </script>
