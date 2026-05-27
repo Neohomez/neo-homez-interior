@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contact | Neo Homez Interior – Contact Us</title>
+<meta name="description" content="Simple, transparent interior design pricing for Bangalore homes. Essential from ₹1,200/sqft, Premium ₹1,800/sqft, Luxury ₹2,500/sqft. Free 3D design included."/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NFLQ8GWSBG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NFLQ8GWSBG');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+<link rel="preload" as="style"
+  href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+  onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap">
+</noscript>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+
+<style>
+:root{
+  --gold:#C4973A;
+  --gold-light:#E8C97A;
+  --gold-pale:#F9F3E7;
+  --gold-dark:#9A7228;
+  --white:#FFFFFF;
+  --off-white:#FAFAF8;
+  --cream:#F5F0E8;
+  --charcoal:#1C1C1C;
+  --dark:#111111;
+  --grey:#6B6B6B;
+  --light-grey:#E8E4DC;
+  --border:#E0D9CC;
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-body:'DM Sans',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);overflow-x:hidden}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--off-white)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+
+/* ─── NAVBAR ─── */
+#nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 60px;height:80px;display:flex;align-items:center;justify-content:space-between;transition:all .4s ease;background:rgba(17,17,17,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(196,151,58,.15)}
+#nav.scrolled{height:68px;box-shadow:0 1px 20px rgba(0,0,0,.1)}
+.nav-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+.nav-brand-name{font-family:var(--font-display);font-size:1.15rem;font-weight:600;color:var(--white);line-height:1.1}
+.nav-brand-sub{font-family:var(--font-body);font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-light)}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-links a{font-family:var(--font-body);font-size:.75rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.75);text-decoration:none;padding:8px 16px;position:relative;transition:color .3s}
+.nav-links a::after{content:'';position:absolute;bottom:4px;left:16px;right:16px;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .3s ease}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-links a:hover,.nav-links a.active{color:var(--gold-light)}
+.nav-brand-text{display:flex;flex-direction:column}
+.nav-btn{font-family:var(--font-body);font-size:.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--charcoal);background:var(--gold);border:none;padding:12px 26px;text-decoration:none;transition:all .3s}
+.nav-btn:hover{background:var(--gold-dark);color:var(--white)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px;cursor:pointer}
+.hamburger span{display:block;width:24px;height:1.5px;background:var(--white);transition:all .3s}
+
+/* Mobile Nav */
+.mob-nav{position:fixed;inset:0;background:var(--dark);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:opacity .4s}
+.mob-nav.open{opacity:1;pointer-events:all}
+.mob-nav a{font-family:var(--font-display);font-size:2.4rem;font-weight:400;color:var(--white);text-decoration:none;transition:color .3s}
+.mob-nav a:hover{color:var(--gold)}
+.mob-close{position:absolute;top:28px;right:36px;background:none;border:none;color:var(--white);font-size:2rem;cursor:pointer}
+
+/* ─── PAGE HERO ─── */
+.page-hero{padding:160px 60px 80px;background:var(--dark);position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0z' fill='none'/%3E%3Cpath d='M20 0v40M0 20h40' stroke='rgba(196,151,58,0.04)' stroke-width='1'/%3E%3C/svg%3E")}
+.page-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent)}
+.page-hero-inner{position:relative;z-index:1;max-width:800px}
+.page-hero-tag{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-body);font-size:.68rem;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+.page-hero-tag::before{content:'';width:36px;height:1px;background:var(--gold)}
+.page-hero h1{font-family:var(--font-display);font-size:clamp(2.8rem,6vw,5rem);font-weight:400;color:var(--white);line-height:1.05;margin-bottom:20px}
+.page-hero h1 em{font-style:italic;color:var(--gold-light)}
+.page-hero-sub{font-family:var(--font-body);font-size:1rem;font-weight:300;color:rgba(255,255,255,.6);line-height:1.85;max-width:540px}
+
+/* Breadcrumb */
+.breadcrumb{position:relative;z-index:1;display:flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:.72rem;color:rgba(255,255,255,.4);margin-bottom:32px}
+.breadcrumb a{color:rgba(255,255,255,.4);text-decoration:none;transition:color .3s}
+.breadcrumb a:hover{color:var(--gold)}
+.breadcrumb span{color:var(--gold)}
+
+/* ─── SECTION COMMONS ─── */
+.sec-label{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:.68rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.sec-label::before{content:'';width:28px;height:1px;background:var(--gold)}
+.sec-h2{font-family:var(--font-display);font-size:clamp(2rem,4.5vw,3.4rem);font-weight:400;line-height:1.1;color:var(--charcoal)}
+.sec-h2 em{font-style:italic;color:var(--gold)}
+.sec-sub{font-family:var(--font-body);font-size:.95rem;font-weight:300;line-height:1.85;color:var(--grey);max-width:520px;margin-top:18px}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .75s ease,transform .75s ease}
+.reveal.on{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* ─── OFFER BANNER ─── */
+.offer-band{background:var(--gold);padding:28px 60px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.offer-band-text{flex:1}
+.offer-band-tag{font-family:var(--font-body);font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-bottom:6px}
+.offer-band-h{font-family:var(--font-display);font-size:clamp(1.4rem,2.5vw,2rem);font-weight:500;color:var(--white);line-height:1.2}
+.offer-band-sub{font-family:var(--font-body);font-size:.88rem;color:rgba(255,255,255,.8);margin-top:6px}
+.btn-white{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);background:var(--white);border:none;padding:15px 32px;text-decoration:none;transition:all .3s;flex-shrink:0}
+.btn-white:hover{background:var(--cream);transform:translateY(-2px)}
+
+/* ───────────────── CONTACT SECTION ───────────────── */
+
+.contact-section{
+  padding:100px 60px;
+  background:var(--off-white);
+  position:relative;
+  overflow:hidden;
+}
+
+.contact-header{
+  text-align:center;
+  margin-bottom:70px;
+}
+
+.contact-wrapper{
+  max-width:1300px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:420px 1fr;
+  gap:40px;
+  align-items:start;
+}
+
+/* LEFT SIDE */
+
+.contact-info{
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
+
+.contact-card{
+  background:rgba(255,255,255,.8);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(196,151,58,.15);
+  padding:28px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  transition:all .35s ease;
+}
+
+.contact-card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(196,151,58,.35);
+  box-shadow:0 18px 40px rgba(0,0,0,.06);
+}
+
+.contact-icon{
+  width:58px;
+  height:58px;
+  background:var(--gold-pale);
+  color:var(--gold);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.1rem;
+  flex-shrink:0;
+}
+
+.contact-card h4{
+  font-family:var(--font-display);
+  font-size:1.1rem;
+  margin-bottom:5px;
+  color:var(--charcoal);
+}
+
+.contact-card p{
+  font-size:.88rem;
+  color:var(--grey);
+  line-height:1.7;
+}
+
+/* RIGHT FORM */
+
+.contact-form-wrap{
+  background:rgba(255,255,255,.82);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(196,151,58,.15);
+  padding:42px;
+}
+
+.contact-form{
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+}
+
+.form-group label{
+  font-size:.75rem;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--gold-dark);
+  margin-bottom:10px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+  width:100%;
+  border:1px solid var(--border);
+  background:var(--white);
+  padding:16px 18px;
+  font-family:var(--font-body);
+  font-size:.92rem;
+  color:var(--charcoal);
+  outline:none;
+  transition:all .3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 4px rgba(196,151,58,.08);
+}
+
+.form-group textarea{
+  resize:none;
+}
+
+.contact-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  border:none;
+  background:var(--gold);
+  color:var(--white);
+  padding:18px 32px;
+  font-size:.78rem;
+  font-weight:600;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all .35s ease;
+}
+
+.contact-btn:hover{
+  background:var(--gold-dark);
+  transform:translateY(-2px);
+  box-shadow:0 16px 40px rgba(196,151,58,.25);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1024px){
+
+  .contact-section{
+    padding:80px 32px;
+  }
+
+  .contact-wrapper{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:640px){
+
+  .contact-section{
+    padding:70px 24px;
+  }
+
+  .contact-form-wrap{
+    padding:30px 24px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ─── PRICING ─── */
+#pricing{padding:100px 60px;background:var(--white)}
+.pricing-header{text-align:center;margin-bottom:64px}
+.pricing-header .sec-label{justify-content:center}
+.pricing-header .sec-h2{text-align:center}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto}
+.pkg{border:1px solid var(--border);padding:40px;position:relative;transition:all .4s;overflow:hidden}
+.pkg::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--border);transition:background .4s}
+.pkg:hover{border-color:var(--gold);transform:translateY(-6px);box-shadow:0 30px 70px rgba(196,151,58,.12)}
+.pkg:hover::before,.pkg.featured::before{background:linear-gradient(90deg,var(--gold-dark),var(--gold-light))}
+.pkg.featured{border-color:var(--gold);background:var(--gold-pale)}
+.pkg-badge{display:inline-block;font-family:var(--font-body);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--white);background:var(--gold);padding:5px 14px;margin-bottom:20px}
+.pkg-name{font-family:var(--font-display);font-size:1.5rem;font-weight:500;color:var(--charcoal);margin-bottom:8px}
+.pkg-price{font-family:var(--font-display);font-size:2.4rem;font-weight:600;color:var(--gold);line-height:1;margin:16px 0}
+.pkg-price span{font-family:var(--font-body);font-size:.85rem;font-weight:400;color:var(--grey)}
+.pkg-desc{font-family:var(--font-body);font-size:.82rem;font-weight:300;line-height:1.7;color:var(--grey);margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border)}
+.pkg-features{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:36px}
+.pkg-features li{display:flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:.82rem;color:var(--charcoal)}
+.pkg-features li::before{content:'✓';color:var(--gold);font-weight:600;flex-shrink:0}
+.btn-pkg{display:block;text-align:center;font-family:var(--font-body);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--charcoal);border:1.5px solid var(--charcoal);padding:14px;text-decoration:none;transition:all .3s}
+.btn-pkg:hover,.pkg.featured .btn-pkg{background:var(--gold);border-color:var(--gold);color:var(--white)}
+
+
+
+/* ─── COMPARISON TABLE ─── */
+#compare{padding:80px 60px;background:var(--off-white)}
+.compare-header{text-align:center;margin-bottom:50px}
+.compare-table{width:100%;max-width:900px;margin:0 auto;border-collapse:collapse;font-family:var(--font-body)}
+.compare-table th{padding:18px 20px;font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;text-align:center;border-bottom:2px solid var(--border)}
+.compare-table th:first-child{text-align:left;color:var(--grey)}
+.compare-table th:not(:first-child){color:var(--gold)}
+.compare-table td{padding:16px 20px;font-size:.85rem;border-bottom:1px solid var(--border);text-align:center;color:var(--charcoal)}
+.compare-table td:first-child{text-align:left;color:var(--grey);font-weight:400}
+.compare-table tr:hover td{background:var(--gold-pale)}
+.check-yes{color:var(--gold);font-size:1rem}
+.check-no{color:var(--light-grey);font-size:1rem}
+
+/* ─── EMI CALCULATOR ─── */
+.emi-section{background:linear-gradient(135deg,#0f172a,#111827);padding:100px 60px;color:var(--white)}
+.emi-container{max-width:1200px;margin:auto;display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:center}
+.emi-tag{color:var(--gold-light);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;display:block;margin-bottom:18px}
+.emi-left h2{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;margin-bottom:18px;font-weight:400;color:var(--white)}
+.emi-left h2 em{font-style:italic;color:var(--gold-light)}
+.emi-description{color:rgba(255,255,255,.65);font-size:.9rem;line-height:1.85;margin-bottom:44px;max-width:520px}
+.slider-group{margin-bottom:32px}
+.slider-header{display:flex;justify-content:space-between;margin-bottom:12px;font-size:.85rem;font-weight:500;color:rgba(255,255,255,.85)}
+input[type="range"]{width:100%;height:7px;border-radius:20px;outline:none;appearance:none;background:#374151;cursor:pointer}
+input[type="range"]::-webkit-slider-thumb{appearance:none;width:20px;height:20px;border-radius:50%;background:var(--gold);cursor:pointer;border:3px solid var(--white);box-shadow:0 0 8px rgba(0,0,0,.3)}
+.emi-card{background:rgba(255,255,255,.07);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:40px}
+.emi-title{color:rgba(255,255,255,.65);font-size:.85rem;margin-bottom:12px}
+#emiAmount{font-family:var(--font-display);font-size:clamp(2.4rem,5vw,3.6rem);color:var(--white);margin-bottom:8px;line-height:1}
+.emi-subtext{color:rgba(255,255,255,.45);font-size:.8rem;margin-bottom:32px}
+.emi-breakdown{display:grid;gap:14px;margin-bottom:28px}
+.breakdown-box{background:rgba(255,255,255,.05);border-radius:14px;padding:18px}
+.breakdown-box span{color:rgba(255,255,255,.5);font-size:.75rem;text-transform:uppercase;letter-spacing:.1em}
+.breakdown-box h3{margin-top:8px;font-family:var(--font-display);font-size:1.5rem;color:var(--white);font-weight:500}
+.finance-btn{width:100%;background:var(--gold);color:var(--charcoal);border:none;padding:16px;border-radius:12px;font-size:.85rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:.3s ease}
+.finance-btn:hover{background:var(--gold-dark);color:var(--white);transform:translateY(-2px)}
+
+/* ─── FAQ MINI ─── */
+#faq{padding:80px 60px;background:var(--cream)}
+.faq-header{text-align:center;margin-bottom:48px}
+.faq-header .sec-label{justify-content:center}
+.faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{width:100%;background:none;border:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0;cursor:pointer;text-align:left}
+.faq-q-text{font-family:var(--font-body);font-size:.9rem;font-weight:500;color:var(--charcoal);line-height:1.5}
+.faq-icon{flex-shrink:0;width:28px;height:28px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:.7rem;transition:all .3s}
+.faq-item.open .faq-icon{background:var(--gold);border-color:var(--gold);color:var(--white);transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-item.open .faq-a{max-height:300px}
+.faq-a-inner{font-family:var(--font-body);font-size:.85rem;font-weight:300;line-height:1.8;color:var(--grey);padding:0 0 22px}
+
+/* ─── CTA ─── */
+.pricing-cta{padding:100px 60px;background:var(--dark);text-align:center;position:relative;overflow:hidden}
+.pricing-cta::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0z' fill='none'/%3E%3Cpath d='M20 0v40M0 20h40' stroke='rgba(196,151,58,0.04)' stroke-width='1'/%3E%3C/svg%3E")}
+.pricing-cta::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent)}
+.pricing-cta-inner{position:relative;z-index:1}
+.pricing-cta h2{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.6rem);font-weight:400;color:var(--white);line-height:1.1;margin-bottom:14px}
+.pricing-cta h2 em{color:var(--gold);font-style:italic}
+.pricing-cta p{font-family:var(--font-body);font-size:.95rem;color:rgba(255,255,255,.5);max-width:420px;margin:0 auto 40px;line-height:1.85}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--charcoal);background:var(--gold);border:none;padding:17px 38px;text-decoration:none;transition:all .35s}
+.btn-primary:hover{background:var(--gold-dark);color:var(--white);transform:translateY(-2px);box-shadow:0 14px 40px rgba(196,151,58,.35)}
+.btn-ghost{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--white);background:transparent;border:1px solid rgba(255,255,255,.4);padding:16px 36px;text-decoration:none;transition:all .35s}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ─── FOOTER ─── */
+#footer{background:#050505;padding:60px 60px 30px;color:rgba(255,255,255,.5)}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:50px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.06)}
+.footer-brand-name{font-family:var(--font-display);font-size:1.8rem;font-weight:500;color:var(--white);margin-bottom:4px}
+.footer-brand-sub{font-family:var(--font-body);font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.footer-brand-desc{font-family:var(--font-body);font-size:.8rem;line-height:1.85;color:rgba(255,255,255,.38);max-width:260px;margin-bottom:20px}
+.footer-heading{font-family:var(--font-body);font-size:.65rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:block}
+.footer-col{display:flex;flex-direction:column}
+.footer-col a{font-family:var(--font-body);font-size:.8rem;color:rgba(255,255,255,.45);text-decoration:none;margin-bottom:12px;transition:all .3s}
+.footer-col a:hover{color:var(--gold);padding-left:6px}
+.socials{display:flex;gap:10px;margin-top:4px}
+.social-btn{width:42px;height:42px;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);text-decoration:none;font-size:1rem;transition:all .3s}
+.social-btn:hover{background:var(--gold);border-color:var(--gold);color:var(--white)}
+.footer-bottom{padding:20px 0}
+.footer-copy{font-family:var(--font-body);font-size:.72rem;color:rgba(255,255,255,.2)}
+
+/* WhatsApp float */
+.wa-float{position:fixed;bottom:36px;right:36px;z-index:500;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1.4rem;text-decoration:none;box-shadow:0 6px 24px rgba(37,211,102,.4);transition:transform .3s}
+.wa-float:hover{transform:scale(1.1)}
+#btt{position:fixed;bottom:100px;right:36px;z-index:500;width:48px;height:48px;background:var(--gold);border:none;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1rem;cursor:pointer;opacity:0;pointer-events:none;transition:all .3s}
+#btt.show{opacity:1;pointer-events:all}
+#btt:hover{background:var(--gold-dark);transform:translateY(-4px)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1024px){
+  #nav{padding:0 32px}
+  .nav-links,.nav-btn{display:none}
+  .hamburger{display:flex}
+  .page-hero{padding:130px 32px 60px}
+  .offer-band{padding:28px 32px}
+  #pricing{padding:70px 32px}
+  .pricing-grid{grid-template-columns:1fr}
+  #compare{padding:60px 32px}
+  .emi-section{padding:70px 32px}
+  .emi-container{grid-template-columns:1fr}
+  #faq{padding:60px 32px}
+  .pricing-cta{padding:80px 32px}
+  #footer{padding:50px 32px 24px}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .page-hero{padding:110px 24px 50px}
+  #pricing,.emi-section,#compare,#faq,.pricing-cta{padding-left:24px;padding-right:24px}
+  .footer-top{grid-template-columns:1fr}
+  #footer{padding:40px 24px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- Mobile Nav -->
+<nav class="mob-nav" id="mobNav">
+  <button class="mob-close" onclick="closeMob()">✕</button>
+  <a href="index.html" onclick="closeMob()">Home</a>
+  <a href="index.html#rooms" onclick="closeMob()">Our Rooms</a>
+  <a href="index.html#portfolio" onclick="closeMob()">Portfolio</a>
+  <a href="services.html" onclick="closeMob()">Services</a>
+  <a href="pricing.html" onclick="closeMob()">Pricing</a>
+  <a href="about.html" onclick="closeMob()">About Us</a>
+  <a href="testimonial.html" onclick="closeMob()">Testimonials</a>
+  <a href="contact.html" onclick="closeMob()">Contact</a>
+</nav>
+<!-- Navbar -->
+<nav id="nav">
+  <a href="index.html" class="nav-brand">
+    <img src="NH_Logo.webp" alt="Neo Homez Interior Logo" width="60" height="60" loading="eager" style="width:60px;height:60px;object-fit:contain;border-radius:50%;">
+    <div class="nav-brand-text">
+      <span class="nav-brand-name">Neo Homez Interior</span>
+      <span class="nav-brand-sub">Luxury Design · Bangalore</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+   <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#rooms">Rooms</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="testimonial.html">Testimonials</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-btn">Get Free Quote</a>
+  <button class="hamburger" onclick="openMob()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ─── PAGE HERO ─── -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <i class="fa fa-chevron-right" style="font-size:.55rem"></i>
+      <span>Contact</span>
+    </div>
+    <div class="page-hero-tag">Luxury Interior Services</div>
+<h1>Let’s Design <em>Your</em><br>Dream Space</h1>
+<p class="page-hero-sub">
+Connect with Neo Homez Interior for personalized luxury interior solutions, expert guidance, and a seamless design experience tailored to your lifestyle.
+</p>
+  </div>
+</section>
+
+<!-- ─── OFFER BAND ─── -->
+<div class="offer-band reveal">
+  <div class="offer-band-text">
+    <div class="offer-band-tag">Limited Time · Ends June 30, 2026</div>
+    <div class="offer-band-h">Free 3D Walkthrough + 10% Off Full Home Package</div>
+    <div class="offer-band-sub">Book your consultation now to lock in this offer.</div>
+  </div>
+  <a href="index.html#contact" class="btn-white">Claim Offer <i class="fa fa-arrow-right"></i></a>
+</div>
+
+<!-- ───────────────── CONTACT SECTION ───────────────── -->
+<section id="contact-page" class="contact-section">
+
+  <div class="contact-header reveal">
+    <div class="sec-label" style="justify-content:center">
+      Get In Touch
+    </div>
+
+    <h2 class="sec-h2">
+      Let’s Design Your <em>Dream Home</em>
+    </h2>
+
+    <p class="sec-sub" style="margin:auto;text-align:center">
+      Whether you're planning a modular kitchen, full home interior,
+      or luxury villa project — our designers are ready to help.
+    </p>
+  </div>
+
+  <div class="contact-wrapper">
+
+    <!-- LEFT -->
+    <div class="contact-info reveal d1">
+
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fa-solid fa-phone"></i>
+        </div>
+
+        <div>
+          <h4>Call Us</h4>
+          <p>+91 87478 26666</p>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fa-solid fa-envelope"></i>
+        </div>
+
+        <div>
+          <h4>Email Address</h4>
+          <p>info@neohomezinterior.in</p>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fa-solid fa-location-dot"></i>
+        </div>
+
+        <div>
+          <h4>Studio Location</h4>
+          <p>Bangalore, Karnataka</p>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fa-solid fa-clock"></i>
+        </div>
+
+        <div>
+          <h4>Working Hours</h4>
+          <p>Mon - Sat · 9AM - 7PM</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="contact-form-wrap reveal d2">
+
+      <form class="contact-form">
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" placeholder="Enter your name">
+          </div>
+
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="Enter phone number">
+          </div>
+
+        </div>
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="Enter your email">
+          </div>
+
+          <div class="form-group">
+            <label>Project Type</label>
+            <select>
+              <option>Choose Project</option>
+              <option>Full Home Interior</option>
+              <option>Modular Kitchen</option>
+              <option>Living Room</option>
+              <option>Bedroom Interior</option>
+              <option>Villa Interior</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <label>Your Message</label>
+          <textarea rows="6" placeholder="Tell us about your dream home..."></textarea>
+        </div>
+
+        <button type="submit" class="contact-btn">
+          Book Free Consultation
+          <i class="fa fa-arrow-right"></i>
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="pricing-cta">
+  <div class="pricing-cta-inner">
+    <div class="sec-label reveal" style="justify-content:center;color:var(--gold)">Get Started</div>
+    <h2 class="reveal">Ready to Build Your<br><em>Dream Home?</em></h2>
+    <p class="reveal">Book a free consultation — get your 3D design and fixed quote with zero obligation.</p>
+    <div class="cta-btns reveal">
+      <a href="index.html#contact" class="btn-primary"><span>Book Free Consultation</span> <i class="fa fa-arrow-right"></i></a>
+      <a href="https://wa.me/+918747826666" class="btn-ghost" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer id="footer">
+  <div class="footer-top">
+    <div class="footer-col">
+      <div class="footer-brand-name">Neo Homez Interior</div>
+      <div class="footer-brand-sub">Luxury Interior Design · Bangalore</div>
+      <p class="footer-brand-desc">Crafting extraordinary homes with elegance, precision, and modern luxury interiors.</p>
+      <div class="socials">
+        <a href="https://instagram.com/neohomezinterior" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/neohomezinterior" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://linkedin.com/company/neohomezinterior" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/918747826666" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-heading">Quick Links</span>
+      <a href="index.html">Home</a>
+      <a href="index.html#rooms">Rooms</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <span class="footer-heading">Legal</span>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms &amp; Conditions</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Neo Homez Interior. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<a href="https://wa.me/+918747826666" class="wa-float" target="_blank" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+  <i class="fa fa-arrow-up"></i>
+</button>
+
+<script>
+/* Navbar */
+const nav = document.getElementById('nav');
+const btt = document.getElementById('btt');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', scrollY > 60);
+  btt.classList.toggle('show', scrollY > 400);
+}, {passive:true});
+
+/* Mobile nav */
+function openMob(){document.getElementById('mobNav').classList.add('open')}
+function closeMob(){document.getElementById('mobNav').classList.remove('open')}
+
+/* Scroll reveal */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); });
+}, {threshold:.1, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* FAQ toggle */
+function toggleFaq(btn){
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+/* EMI Calculator */
+const loanAmount = document.getElementById('loanAmount');
+const interestRate = document.getElementById('interestRate');
+const tenure = document.getElementById('tenure');
+
+function formatLakhs(num){ return '₹' + (num/100000).toFixed(2) + ' L'; }
+function formatINR(num){ return '₹' + num.toLocaleString('en-IN'); }
+
+function calculateEMI(){
+  const P = parseFloat(loanAmount.value);
+  const R = parseFloat(interestRate.value) / 12 / 100;
+  const N = parseInt(tenure.value);
+  const EMI = Math.round((P * R * Math.pow(1+R,N)) / (Math.pow(1+R,N)-1));
+  const total = EMI * N;
+  document.getElementById('loanAmountValue').textContent = formatLakhs(P);
+  document.getElementById('interestRateValue').textContent = parseFloat(interestRate.value).toFixed(2) + '%';
+  document.getElementById('tenureValue').textContent = N + ' Months';
+  document.getElementById('emiAmount').textContent = formatINR(EMI);
+  document.getElementById('emiDuration').textContent = `per month for ${N} months`;
+  document.getElementById('totalPayable').textContent = formatLakhs(total);
+  document.getElementById('principalAmount').textContent = formatLakhs(P);
+  document.getElementById('interestAmount').textContent = formatLakhs(total - P);
+}
+loanAmount.addEventListener('input', calculateEMI);
+interestRate.addEventListener('input', calculateEMI);
+tenure.addEventListener('input', calculateEMI);
+calculateEMI();
+</script>
+</body>
+</html>
