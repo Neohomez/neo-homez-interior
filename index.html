@@ -1343,18 +1343,30 @@ window.addEventListener('load',()=>{
 const cur=document.getElementById('cur');
 const curR=document.getElementById('curR');
 let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{
-  mx=e.clientX;my=e.clientY;
-  cur.style.transform=`translate(${mx-4}px,${my-4}px)`;
+document.addEventListener('mousemove', (e) => {
+  mx = e.clientX;
+  my = e.clientY;
+
+  requestAnimationFrame(() => {
+    cur.style.transform = `translate(${mx - 4}px,${my - 4}px)`;
+  });
 });
-(function animR(){
-  rx+=(mx-rx-18)*.12;ry+=(my-ry-18)*.12;
-  curR.style.transform=`translate(${rx}px,${ry}px)`;
+function animR(){
+  rx += (mx - rx - 18) * 0.12;
+  ry += (my - ry - 18) * 0.12;
+
+  curR.style.transform = `translate(${rx}px,${ry}px)`;
   requestAnimationFrame(animR);
-})();
-document.querySelectorAll('a,button,.stab,.room-card,.port-item,.tcard,.pkg,.why-item').forEach(el=>{
-  el.addEventListener('mouseenter',()=>curR.classList.add('hover'));
-  el.addEventListener('mouseleave',()=>curR.classList.remove('hover'));
+}
+requestAnimationFrame(animR);
+document.addEventListener('mouseover', (e) => {
+  const el = e.target.closest('a,button,.stab,.room-card,.port-item,.tcard,.pkg,.why-item');
+  if (el) curR.classList.add('hover');
+});
+
+document.addEventListener('mouseout', (e) => {
+  const el = e.target.closest('a,button,.stab,.room-card,.port-item,.tcard,.pkg,.why-item');
+  if (el) curR.classList.remove('hover');
 });
 
 /* Navbar */
@@ -1367,13 +1379,23 @@ window.addEventListener('scroll',()=>{
 
 /* Active nav link */
 const navSecs=['hero','rooms','portfolio','why','pricing','contact'];
-navSecs.forEach(id=>{
-  const el=document.getElementById(id);
-  if(!el)return;
-  new IntersectionObserver(([e])=>{
-    const lnk=document.querySelector(`.nav-links a[href="#${id}"]`);
-    if(lnk)lnk.classList.toggle('active',e.isIntersecting);
-  },{threshold:0.3}).observe(el);
+const navLinks = document.querySelectorAll('.nav-links a');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const id = entry.target.id;
+    const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+
+    if (link) {
+      link.classList.toggle('active', entry.isIntersecting);
+    }
+  });
+}, { threshold: 0.3 });
+
+['hero','rooms','portfolio','why','pricing','contact']
+.forEach(id => {
+  const section = document.getElementById(id);
+  if (section) observer.observe(section);
 });
 
 /* Mobile nav */
