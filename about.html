@@ -96,7 +96,6 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
 .page-hero h1 em{font-style:italic;color:var(--gold-light)}
 .page-hero-sub{font-family:var(--font-body);font-size:1rem;font-weight:300;color:rgba(255,255,255,.6);line-height:1.85;max-width:540px}
 
-
 /* Breadcrumb */
 .breadcrumb{position:relative;z-index:1;display:flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:.72rem;color:rgba(255,255,255,.4);margin-bottom:32px}
 .breadcrumb a{color:rgba(255,255,255,.4);text-decoration:none;transition:color .3s}
@@ -152,6 +151,10 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
 .service-card h3{font-size:1.5rem;margin-bottom:14px;color:var(--charcoal);font-family:var(--font-display);font-weight:500}
 .service-card p{color:var(--grey);line-height:1.85;font-size:.88rem;font-family:var(--font-body)}
 
+.hdot{width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:transparent;border:none;cursor:pointer;margin:0 6px}
+.hdot::before{content:'';width:10px;height:10px;border-radius:50%;background:#c4973a;transition:all .3s ease}
+.hdot.active::before{width:14px;height:14px;background:#fff;box-shadow:0 0 10px rgba(196,151,58,.6)}
+
 /* ─── FOUNDER SECTION ─── */
 .founder-section{padding:100px 60px;background:var(--cream)}
 .founder-container{max-width:1100px;margin:auto}
@@ -159,12 +162,22 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
 .section-title h2{font-size:clamp(2.2rem,4.5vw,3.8rem);line-height:1;color:var(--charcoal);margin-bottom:20px;font-family:var(--font-display);font-weight:500}
 .section-title h2 span{color:var(--gold);font-style:italic}
 .section-title p{font-size:.95rem;color:var(--grey);font-family:var(--font-body);max-width:600px;margin:auto;line-height:1.8}
+
+/* ─── FOUNDER BOX WITH PHOTO ─── */
 .founder-box{background:var(--white);padding:56px;margin-bottom:48px;border:1px solid var(--border)}
-.founder-box h3{font-size:2rem;margin-bottom:24px;color:var(--charcoal);font-family:var(--font-display);font-weight:500}
-.founder-box p{font-size:.9rem;line-height:2;color:var(--grey);margin-bottom:20px;font-family:var(--font-body)}
+.founder-inner{display:grid;grid-template-columns:240px 1fr;gap:50px;align-items:start}
+.founder-photo-col{position:relative}
+.founder-photo-frame{position:relative}
+.founder-photo-frame::before{content:'';position:absolute;top:-10px;left:-10px;right:-10px;bottom:-10px;border:1px solid var(--gold);z-index:0;}
+.founder-photo{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top center;display:block;position:relative;z-index:1}
+.founder-photo-tag{position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--white);font-family:var(--font-body);font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:8px 18px;white-space:nowrap;z-index:2}
+.founder-content{padding-top:4px}
+.founder-content h3{font-size:2rem;margin-bottom:24px;color:var(--charcoal);font-family:var(--font-display);font-weight:500}
+.founder-content p{font-size:.9rem;line-height:2;color:var(--grey);margin-bottom:20px;font-family:var(--font-body)}
 .signature{margin-top:36px;padding-top:28px;border-top:1px solid var(--border)}
 .signature h4{font-size:1.5rem;color:var(--charcoal);margin-bottom:4px;font-family:var(--font-display)}
 .signature span{color:var(--gold);font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;font-family:var(--font-body)}
+
 .mission-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px}
 .mission-card{background:var(--white);padding:44px;border:1px solid var(--border);transition:.3s ease}
 .mission-card:hover{transform:translateY(-6px);border-color:var(--gold)}
@@ -230,6 +243,7 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
   .services-section{padding:70px 32px}
   .founder-section{padding:70px 32px}
   .founder-box{padding:36px}
+  .founder-inner{grid-template-columns:180px 1fr;gap:32px}
   #brands{padding:50px 32px}
   .about-cta{padding:80px 32px}
   #footer{padding:50px 32px 24px}
@@ -241,6 +255,8 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
   #why,#brands,.services-section,.founder-section,.about-cta{padding-left:24px;padding-right:24px}
   .footer-top{grid-template-columns:1fr}
   #footer{padding:40px 24px 20px}
+  .founder-inner{grid-template-columns:1fr;gap:36px}
+  .founder-photo{aspect-ratio:1/1;object-position:top}
 }
 </style>
 </head>
@@ -291,10 +307,10 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
       <span>About</span>
     </div>
     <div class="page-hero-tag">Luxury Interior Services</div>
-<h1>Designed for <em>Refined</em><br>Modern Living</h1>
-<p class="page-hero-sub">
-From custom modular kitchens to complete luxury home interiors, we design sophisticated spaces that bring together style, comfort, and seamless functionality.
-</p>
+    <h1>Designed for <em>Refined</em><br>Modern Living</h1>
+    <p class="page-hero-sub">
+    From custom modular kitchens to complete luxury home interiors, we design sophisticated spaces that bring together style, comfort, and seamless functionality.
+    </p>
   </div>
 </section>
 
@@ -333,8 +349,6 @@ From custom modular kitchens to complete luxury home interiors, we design sophis
   </div>
 </section>
 
-
-
 <!-- ─── FOUNDER VISION MISSION ─── -->
 <section class="founder-section">
   <div class="founder-container">
@@ -342,16 +356,41 @@ From custom modular kitchens to complete luxury home interiors, we design sophis
       <h2>Founder's <span>Vision</span></h2>
       <p>Crafting timeless interiors that reflect elegance, comfort, and modern luxury.</p>
     </div>
+
     <div class="founder-box reveal">
-      <h3>A Message from Neo Homez Interior</h3>
-      <p>At Neo Homez Interior, we believe every home should tell a story — a story of elegance, warmth, and functionality. Our passion is to transform ordinary spaces into luxurious living experiences that perfectly reflect each client's personality and lifestyle.</p>
-      <p>From premium modular kitchens to complete home interiors, every project is designed with attention to detail, high-quality materials, and thoughtful space planning. We focus on delivering timeless interiors that combine beauty with practicality.</p>
-      <p>Our mission goes beyond designing beautiful homes. We aim to create spaces where families feel inspired, comfortable, and truly connected.</p>
-      <div class="signature">
-        <h4>Neo Homez Interior</h4>
-        <span>Founder &amp; Creative Team</span>
+      <div class="founder-inner">
+
+        <!-- PHOTO COLUMN -->
+        <div class="founder-photo-col">
+          <div class="founder-photo-frame">
+            <!-- Replace "founder.jpeg" with your actual image filename/path -->
+            <img
+              src="Founder.jpeg"
+              alt="Founder – Neo Homez Interior"
+              class="founder-photo"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="founder-photo-tag">Founder</div>
+          </div>
+        </div>
+
+        <!-- CONTENT COLUMN -->
+        <div class="founder-content">
+          <h3>A Message from Neo Homez Interior</h3>
+          <p>At Neo Homez Interior, we believe every home should tell a story — a story of elegance, warmth, and functionality. Our passion is to transform ordinary spaces into luxurious living experiences that perfectly reflect each client's personality and lifestyle.</p>
+          <p>From premium modular kitchens to complete home interiors, every project is designed with attention to detail, high-quality materials, and thoughtful space planning. We focus on delivering timeless interiors that combine beauty with practicality.</p>
+          <p>Our mission goes beyond designing beautiful homes. We aim to create spaces where families feel inspired, comfortable, and truly connected.</p>
+          <div class="signature">
+            <!-- Update with your name and title below -->
+            <h4>TOUHEED AHMED</h4>
+            <span>Founder &amp; Creative Director</span>
+          </div>
+        </div>
+
       </div>
     </div>
+
     <div class="mission-grid">
       <div class="mission-card reveal d1">
         <div class="card-icon">✦</div>
