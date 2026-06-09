@@ -115,126 +115,155 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
 .btn-white{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);background:var(--white);border:none;padding:15px 32px;text-decoration:none;transition:all .3s;flex-shrink:0}
 .btn-white:hover{background:var(--cream);transform:translateY(-2px)}
 
+/* ====================================
+   BEFORE / AFTER SECTION
+==================================== */
+
+.beforeafter-section{
+    padding:120px 8%;
+    background:#0b0b0b;
+    position:relative;
+    overflow:hidden;
+}
+
+.ba-wrapper{
+    max-width:1300px;
+    margin:auto;
+}
+
+.ba-project{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+    margin-top:50px;
+    margin-bottom:70px;
+}
+
+.ba-card{
+    position:relative;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    border-radius:28px;
+    overflow:hidden;
+    transition:.4s ease;
+}
+
+.ba-card:hover{
+    transform:translateY(-8px);
+    border-color:#d4af37;
+    box-shadow:0 20px 40px rgba(212,175,55,.15);
+}
+
+.ba-image{
+    height:320px;
+    overflow:hidden;
+}
+
+.ba-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.6s ease;
+}
+
+.ba-card:hover img{
+    transform:scale(1.08);
+}
+
+.ba-content{
+    padding:28px;
+}
+
+.ba-content h4{
+    color:#fff;
+    font-size:1.35rem;
+    margin-bottom:12px;
+    font-weight:600;
+}
+
+.ba-content p{
+    color:#bdbdbd;
+    line-height:1.8;
+    font-size:.98rem;
+}
+
+.ba-badge{
+    position:absolute;
+    top:20px;
+    left:20px;
+    z-index:5;
+    padding:10px 18px;
+    border-radius:50px;
+    font-size:.85rem;
+    font-weight:600;
+    letter-spacing:.5px;
+}
+
+.ba-badge.before{
+    background:#2d2d2d;
+    color:#fff;
+}
+
+.ba-badge.after{
+    background:linear-gradient(
+        135deg,
+        #d4af37,
+        #f5d77a
+    );
+    color:#111;
+}
+
+/* Responsive */
+
+@media(max-width:991px){
+
+    .ba-project{
+        grid-template-columns:1fr;
+        gap:25px;
+    }
+
+    .ba-image{
+        height:260px;
+    }
+}
+
+@media(max-width:768px){
+
+    .beforeafter-section{
+        padding:90px 6%;
+    }
+
+    .ba-content{
+        padding:22px;
+    }
+
+    .ba-content h4{
+        font-size:1.15rem;
+    }
+
+    .ba-content p{
+        font-size:.92rem;
+    }
+}
+
+
 /* ───────────────── TESTIMONIALS ───────────────── */
 
-.testimonials-section{
-  padding:100px 60px;
-  background:var(--cream);
-  position:relative;
-  overflow:hidden;
-}
-
-.testimonials-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:28px;
-  max-width:1300px;
-  margin:auto;
-}
-
-.testimonial-card{
-  background:rgba(255,255,255,.75);
-  backdrop-filter:blur(10px);
-  border:1px solid rgba(196,151,58,.15);
-  padding:42px;
-  position:relative;
-  transition:all .35s ease;
-}
-
-.testimonial-card::before{
-  content:'';
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:2px;
-  background:linear-gradient(90deg,var(--gold),transparent);
-  transform:scaleX(0);
-  transform-origin:left;
-  transition:transform .4s ease;
-}
-
-.testimonial-card:hover::before{
-  transform:scaleX(1);
-}
-
-.testimonial-card:hover{
-  transform:translateY(-8px);
-  border-color:rgba(196,151,58,.35);
-  box-shadow:0 18px 50px rgba(0,0,0,.07);
-}
-
-.quote-icon{
-  width:52px;
-  height:52px;
-  background:var(--gold-pale);
-  color:var(--gold);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:1.1rem;
-  margin-bottom:28px;
-}
-
-.testimonial-text{
-  font-family:var(--font-accent);
-  font-size:1.12rem;
-  line-height:2;
-  color:#2b2b2b;
-  font-style:italic;
-  margin-bottom:42px;
-  min-height:170px;
-}
-
-.testimonial-footer{
-  padding-top:24px;
-  border-top:1px solid rgba(196,151,58,.18);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:18px;
-}
-
-.client-wrap{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-
-.client-avatar{
-  width:56px;
-  height:56px;
-  border-radius:50%;
-  background:var(--gold-pale);
-  color:var(--gold-dark);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family:var(--font-display);
-  font-size:1rem;
-  flex-shrink:0;
-}
-
-.client-info h4{
-  font-family:var(--font-body);
-  font-size:.92rem;
-  font-weight:600;
-  color:var(--charcoal);
-  margin-bottom:4px;
-}
-
-.client-info span{
-  font-family:var(--font-body);
-  font-size:.76rem;
-  color:var(--grey);
-}
-
-.stars{
-  color:var(--gold);
-  letter-spacing:2px;
-  font-size:.9rem;
-  white-space:nowrap;
-}
+.testimonials-section{padding:100px 60px;background:var(--cream);position:relative;overflow:hidden;}
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:28px;max-width:1300px;margin:auto;}
+.testimonial-card{background:rgba(255,255,255,.75);backdrop-filter:blur(10px);border:1px solid rgba(196,151,58,.15);padding:42px;position:relative;transition:all .35s ease;}
+.testimonial-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--gold),transparent);transform:scaleX(0);transform-origin:left;transition:transform .4s ease;}
+.testimonial-card:hover::before{transform:scaleX(1);}
+.testimonial-card:hover{transform:translateY(-8px);border-color:rgba(196,151,58,.35);box-shadow:0 18px 50px rgba(0,0,0,.07);}
+.quote-icon{width:52px;height:52px;background:var(--gold-pale);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:28px;}
+.testimonial-text{font-family:var(--font-accent);font-size:1.12rem;line-height:2;color:#2b2b2b;font-style:italic;margin-bottom:42px;min-height:170px;}
+.testimonial-footer{padding-top:24px;border-top:1px solid rgba(196,151,58,.18);display:flex;align-items:center;justify-content:space-between;gap:18px;}
+.client-wrap{display:flex;align-items:center;gap:14px;}
+.client-avatar{width:56px;height:56px;border-radius:50%;background:var(--gold-pale);color:var(--gold-dark);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1rem;flex-shrink:0;}
+.client-info h4{font-family:var(--font-body);font-size:.92rem;font-weight:600;color:var(--charcoal);margin-bottom:4px;}
+.client-info span{font-family:var(--font-body);font-size:.76rem;color:var(--grey);}
+.stars{color:var(--gold);letter-spacing:2px;font-size:.9rem;white-space:nowrap;}
 
 /* Responsive */
 @media(max-width:1024px){
@@ -452,7 +481,7 @@ input[type="range"]::-webkit-slider-thumb{appearance:none;width:20px;height:20px
       <span>Testimonials</span>
     </div>
     <div class="page-hero-tag">Luxury Interior Services</div>
-<h1>Trusted by<em>Homeowners</em></h1>
+<h1>Trusted <em>by<em></em><br>Homeowners</h1>
 <p class="page-hero-sub">
 Real experiences from clients who transformed their homes with Neo Homez Interior — where luxury design meets quality craftsmanship and seamless execution.
 </p>
@@ -468,6 +497,105 @@ Real experiences from clients who transformed their homes with Neo Homez Interio
   </div>
   <a href="index.html#contact" class="btn-white">Claim Offer <i class="fa fa-arrow-right"></i></a>
 </div>
+
+<!-- ─── BEFORE / AFTER SECTION ─── -->
+<section id="beforeafter" class="beforeafter-section">
+
+  <div class="services-title reveal">
+    <div class="sec-label" style="justify-content:center">
+      Before & After
+    </div>
+
+    <h2>
+      Stunning <span>Transformations</span>
+    </h2>
+
+    <p>
+      Every dream home starts with a blank canvas. See how Neo Homez
+      transforms ordinary spaces into luxurious living experiences.
+    </p>
+  </div>
+
+  <div class="ba-wrapper">
+
+    <!-- Project 1 -->
+    <div class="ba-project reveal">
+
+      <div class="ba-card">
+        <div class="ba-badge before">Before</div>
+
+        <div class="ba-image">
+          <img src="3BHK_Before.jpeg" alt="Before Interior">
+        </div>
+
+        <div class="ba-content">
+          <h4>Whitefield 3BHK</h4>
+          <p>
+            Bare walls, standard flooring, no storage solutions
+            and unfinished lighting layout.
+          </p>
+        </div>
+      </div>
+
+      <div class="ba-card">
+        <div class="ba-badge after">After</div>
+
+        <div class="ba-image">
+          <img src="3BHK_After.jpeg" alt="After Interior">
+        </div>
+
+        <div class="ba-content">
+          <h4>Neo Homez Transformation</h4>
+          <p>
+            Custom wardrobes, fluted wall panels, ambient lighting,
+            premium finishes and elegant interiors.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Project 2 -->
+    <div class="ba-project reveal">
+
+      <div class="ba-card">
+        <div class="ba-badge before">Before</div>
+
+        <div class="ba-image">
+          <img src="Kitchen_Before.jpeg" alt="Before Kitchen">
+        </div>
+
+        <div class="ba-content">
+          <h4>Koramangala Kitchen</h4>
+          <p>
+            Old kitchen layout with limited storage,
+            outdated tiles and poor functionality.
+          </p>
+        </div>
+      </div>
+
+      <div class="ba-card">
+        <div class="ba-badge after">After</div>
+
+        <div class="ba-image">
+          <img src="Kitchen_After.jpeg" alt="After Kitchen">
+        </div>
+
+        <div class="ba-content">
+          <h4>Luxury Modular Kitchen</h4>
+          <p>
+            Quartz countertop, premium fittings,
+            under-cabinet lighting and modern storage systems.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
 
 <!-- ─── TESTIMONIALS ─── -->
 <section id="testimonials" class="testimonials-section">
@@ -572,6 +700,37 @@ Real experiences from clients who transformed their homes with Neo Homez Interio
 
 </section>
     
+<!-- ─── FAQ (Frequently Asked Questions)─── -->
+<section id="faq">
+  <div class="faq-header">
+    <div class="sec-label">Questions</div>
+    <h2 class="sec-h2">Frequently Asked Questions <em>FAQs</em></h2>
+  </div>
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">How much does a full home interior cost in Bangalore?</span><span class="faq-icon"><i class="fa fa-plus"></i></span></button>
+      <div class="faq-a"><div class="faq-a-inner">For a 3BHK apartment in Bangalore, a full home interior typically ranges from ₹8 Lakhs to ₹25 Lakhs depending on size, material grade, and design complexity. Our Essential package starts at ₹1,200/sq ft and our Premium package at ₹1,800/sq ft. We provide a detailed, transparent quote after the free site visit — no hidden costs.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Is there anything included in all packages?</span><span class="faq-icon"><i class="fa fa-plus"></i></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Yes — every package includes a free 3D design consultation, a detailed and transparent cost quote before any work starts, and a fixed delivery timeline. You will never be surprised by hidden charges.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Can I customise a package to suit my needs?</span><span class="faq-icon"><i class="fa fa-plus"></i></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Absolutely. These packages are starting points. During your free consultation, we tailor the scope, materials, and timeline to match exactly what you need and what fits your budget. Many clients mix elements from different tiers.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Do you offer financing or EMI options?</span><span class="faq-icon"><i class="fa fa-plus"></i></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Yes, we work with finance partners who offer interior loans at 11%–14% interest for 12 to 84-month tenures. Use the EMI calculator above to estimate your monthly payment. Our team will connect you with the right lender during the consultation.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">What warranty is included?</span><span class="faq-icon"><i class="fa fa-plus"></i></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Essential includes 6 months, Premium includes 1 full year, and Luxury includes 2 years. All warranties cover workmanship, hardware, and finishing. Our service team responds within 48 hours at no extra cost during the warranty period.</div></div>
+    </div>
+  </div>
+</section>
+
+
 <!-- ─── CTA ─── -->
 <section class="pricing-cta">
   <div class="pricing-cta-inner">
@@ -607,11 +766,12 @@ Real experiences from clients who transformed their homes with Neo Homez Interio
       <a href="pricing.html">Pricing</a>
       <a href="about.html">About</a>
       <a href="index.html#contact">Contact</a>
+
     </div>
     <div class="footer-col">
       <span class="footer-heading">Legal</span>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms &amp; Conditions</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-and-conditions.html">Terms & Conditions</a>
     </div>
   </div>
   <div class="footer-bottom">
