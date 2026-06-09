@@ -96,6 +96,29 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
 .breadcrumb a:hover{color:var(--gold)}
 .breadcrumb span{color:var(--gold)}
 
+
+
+/* SECTION WRAPPER */
+  .section { max-width: 900px; margin: 48px auto; padding: 0 24px; }
+  .section-header { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .section-tag { font-family: sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .section-tag::after { content: ''; flex: 1; height: 1px; background: var(--gold-light); }
+  .section-title { font-size: 28px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+  .section-desc { font-size: 14px; color: var(--ink3); font-family: sans-serif; }
+
+  /* CONTENT BLOCKS */
+  .content-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; margin-bottom: 24px; }
+  .content-box h2 { font-size: 22px; color: var(--ink); margin-bottom: 6px; }
+  .content-box h3 { font-size: 17px; color: var(--ink); margin-bottom: 6px; margin-top: 24px; }
+  .content-box h4 { font-size: 14px; font-family: sans-serif; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; margin-top: 20px; }
+  .content-box p { font-size: 15px; color: var(--ink2); margin-bottom: 14px; line-height: 1.8; }
+  .content-box ul, .content-box ol { padding-left: 20px; margin-bottom: 14px; }
+  .content-box li { font-size: 15px; color: var(--ink2); margin-bottom: 8px; line-height: 1.7; }
+  .content-box .label { font-family: sans-serif; font-size: 11px; font-weight: 600; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+  .content-box strong { color: var(--ink); font-weight: 600; }
+  .note { background: var(--gold-light); border-left: 3px solid var(--gold); border-radius: 0 var(--radius) var(--radius) 0; padding: 12px 16px; font-family: sans-serif; font-size: 13px; color: #7a6030; margin-bottom: 20px; }
+  .note strong { color: #5a4020; }
+
 /* ─── SECTION COMMONS ─── */
 .sec-label{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:.68rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
 .sec-label::before{content:'';width:28px;height:1px;background:var(--gold)}
@@ -117,86 +140,34 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
 
 /* ─── SERVICES ─── */
 
-.services-section{
-  padding:110px 20px;
-  background:#f8f7f4;
-}
+.services-section{padding:110px 20px;background:#f8f7f4;}
+.services-head{text-align:center;margin-bottom:60px;}
+.services-head h2{font-family:var(--font-display);font-size:clamp(2.2rem,4vw,3.8rem);font-weight:500;color:var(--charcoal);margin-bottom:12px;}
+.services-head h2 span{color:var(--gold);font-style:italic;}
+.services-head p{max-width:620px;margin:auto;font-size:.9rem;line-height:1.9;color:var(--grey);}
+.services-grid{max-width:760px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.service-card{background:#fdfcf9;border:1px solid #e8e1d7;padding:26px;text-decoration:none;transition:all .35s ease;min-height:190px;}
+.service-card:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 15px 40px rgba(0,0,0,.06);}
+.service-icon{width:38px;height:38px;background:#efe5d0;display:flex;align-items:center;justify-content:center;color:var(--gold-dark);font-size:.9rem;margin-bottom:20px;}
+.service-card h3{font-family:var(--font-display);font-size:1.15rem;font-weight:500;color:var(--charcoal);margin-bottom:12px;line-height:1.4;}
+.service-card p{font-size:.78rem;line-height:1.9;color:var(--grey);}
 
-.services-head{
-  text-align:center;
-  margin-bottom:60px;
-}
+/* COMMERCIAL */
+  .comm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  .comm-card { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; background: var(--surface); }
+  .comm-icon { font-size: 24px; margin-bottom: 10px; }
+  .comm-title { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 6px; font-family: sans-serif; }
+  .comm-desc { font-size: 13px; color: var(--ink2); font-family: sans-serif; line-height: 1.6; margin-bottom: 12px; }
+  .comm-price { font-family: sans-serif; font-size: 12px; font-weight: 600; color: var(--gold); }
 
-.services-head h2{
-  font-family:var(--font-display);
-  font-size:clamp(2.2rem,4vw,3.8rem);
-  font-weight:500;
-  color:var(--charcoal);
-  margin-bottom:12px;
-}
+  @media (max-width: 600px) {
+    .pkg-grid, .steps, .ba-grid, .comm-grid { grid-template-columns: 1fr; }
+    .toc { gap: 4px; }
+  }
 
-.services-head h2 span{
-  color:var(--gold);
-  font-style:italic;
-}
-
-.services-head p{
-  max-width:620px;
-  margin:auto;
-  font-size:.9rem;
-  line-height:1.9;
-  color:var(--grey);
-}
-
-.services-grid{
-  max-width:760px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-}
-
-.service-card{
-  background:#fdfcf9;
-  border:1px solid #e8e1d7;
-  padding:26px;
-  text-decoration:none;
-  transition:all .35s ease;
-  min-height:190px;
-}
-
-.service-card:hover{
-  transform:translateY(-6px);
-  border-color:var(--gold);
-  box-shadow:0 15px 40px rgba(0,0,0,.06);
-}
-
-.service-icon{
-  width:38px;
-  height:38px;
-  background:#efe5d0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:var(--gold-dark);
-  font-size:.9rem;
-  margin-bottom:20px;
-}
-
-.service-card h3{
-  font-family:var(--font-display);
-  font-size:1.15rem;
-  font-weight:500;
-  color:var(--charcoal);
-  margin-bottom:12px;
-  line-height:1.4;
-}
-
-.service-card p{
-  font-size:.78rem;
-  line-height:1.9;
-  color:var(--grey);
-}
+/* AREAS */
+  .areas-grid {display: flex; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin-top: 16px; }
+  .area-chip { background: var(--surface2); border: 1px solid var(--gold); border-radius: var(--gold); padding: 10px 14px; font-family: sans-serif; font-size: 13px; color: var(--ink2); text-align: center; }
 
 /* Responsive */
 
@@ -553,6 +524,121 @@ From bespoke modular kitchens to complete premium home interiors, we create eleg
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════ -->
+<!-- 6. COMMERCIAL INTERIORS SECTION -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section" id="commercial">
+  <div class="section-header">
+    <h1 class="section-title">Commercial Interiors </h1>
+    <p class="section-desc"></p>
+  </div>
+
+  <div class="content-box">
+    <h2>Spaces That Work As Hard As You Do</h2>
+    <p>From Bangalore startups to established retail brands — we design commercial spaces that make the right impression, built to last.</p>
+
+    <div class="comm-grid">
+      <div class="comm-card">
+        <div class="comm-icon">🏢</div>
+        <div class="comm-title">Office Interiors</div>
+        <div class="comm-desc">Productivity-first workspaces with smart zoning — focus areas, collaboration zones, meeting rooms, and reception design. Perfect for startups, tech teams, and corporate offices in Bangalore.</div>
+        <div class="comm-price">Starting from ₹900/sqft</div>
+      </div>
+      <div class="comm-card">
+        <div class="comm-icon">🛍️</div>
+        <div class="comm-title">Retail & Showrooms</div>
+        <div class="comm-desc">Display-first design that drives footfall and dwell time. We design boutiques, showrooms, and brand experience spaces that make products irresistible.</div>
+        <div class="comm-price">Starting from ₹1,100/sqft</div>
+      </div>
+      <div class="comm-card">
+        <div class="comm-icon">🍽️</div>
+        <div class="comm-title">Cafés & Restaurants</div>
+        <div class="comm-desc">Atmosphere that keeps guests coming back. Lighting, acoustics, seating layout, material selection — every element designed for the dining experience.</div>
+        <div class="comm-price">Starting from ₹1,200/sqft</div>
+      </div>
+      <div class="comm-card">
+        <div class="comm-icon">🏨</div>
+        <div class="comm-title">Hospitality & Salons</div>
+        <div class="comm-desc">Service environments that put clients at ease. Hotels, service apartments, salons, spas — designed for comfort, brand consistency, and smooth operations.</div>
+        <div class="comm-price">Starting from ₹1,000/sqft</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:24px;">Why businesses choose Neo Homez for commercial work</h3>
+    <div class="steps" style="margin-top:14px;">
+      <div class="step">
+        <div class="step-num"></div>
+        <div><div class="step-title"><em>1.</em><strong> Fixed Cost</strong></div><div class="step-desc">Business downtime is expensive. We commit to your go-live date in writing and deliver on it.</div></div>
+      </div>
+      <br>
+      <div class="step">
+        <div class="step-num"></div>
+        <div><div class="step-title"><em>2.</em><strong> Compliance & Vastu</strong></div><div class="step-desc">All designs are compliant with local building norms and can incorporate Vastu principles on request.</div></div>
+      </div>
+      <br>
+      <div class="step">
+        <div class="step-num"></div>
+        <div><div class="step-title"><em>3.</em><strong> Weekend & After-Hours Work</strong></div><div class="step-desc">For operational businesses, we schedule civil and execution work outside your business hours.</div></div>
+      </div>
+      <br>
+      <div class="step">
+        <div class="step-num"></div>
+        <div><div class="step-title"><em>4.</em><strong> Brand guideline integration</strong></div><div class="step-desc">If you have brand colours, fonts, or identity guidelines — we design to match your brand, not our preferences.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- 7. SERVICE AREAS -->
+<!-- ═══════════════════════════════════════════ -->
+  </div>
+
+  <div class="content-box">
+    <h1>Serving Bangalore-wide</h1>
+    <br><p><em>Neo Homez Interior and executes projects across Bangalore. Our team travels to your site — no extra charges for site visits within Bangalore city limits.</em> </p><br>
+    <br>
+
+    <h4>East Bangalore</h4>
+    <div class="areas-grid">
+      <div class="area-chip">Whitefield</div>
+      <div class="area-chip">Indiranagar</div>
+      <div class="area-chip">KR Puram</div>
+      <div class="area-chip">Marathahalli</div>
+      <div class="area-chip">Varthur</div>
+    </div>
+
+    <h4 style="margin-top:18px;">South Bangalore</h4>
+    <div class="areas-grid">
+      <div class="area-chip">Koramangala</div>
+      <div class="area-chip">HSR Layout</div>
+      <div class="area-chip">JP Nagar</div>
+      <div class="area-chip">Jayanagar</div>
+      <div class="area-chip">BTM Layout</div>
+      <div class="area-chip">Bannerghatta Rd</div>
+      <div class="area-chip">Electronic City</div>
+    </div>
+
+    <h4 style="margin-top:18px;">North & West Bangalore</h4>
+    <div class="areas-grid">
+      <div class="area-chip">Hebbal</div>
+      <div class="area-chip">Yeshwanthpur</div>
+      <div class="area-chip">Rajajinagar</div>
+      <div class="area-chip">Malleshwaram</div>
+    </div>
+
+    <h4 style="margin-top:18px;">Along Outer Ring Road & Sarjapur</h4>
+    <div class="areas-grid">
+      <div class="area-chip">Sarjapur Road</div>
+      <div class="area-chip">Bellandur</div>
+      <div class="area-chip">Kadugodi</div>
+      <div class="area-chip">Brookefield</div>
+      <div class="area-chip">Harlur Road</div>
+    </div>
+
+  </div>
+</div>
+
 <!-- ─── CTA ─── -->
 <section class="pricing-cta">
   <div class="pricing-cta-inner">
@@ -560,8 +646,6 @@ From bespoke modular kitchens to complete premium home interiors, we create eleg
     <h2 class="reveal">Ready to Build Your<br><em>Dream Home?</em></h2>
     <p class="reveal">Book a free consultation — get your 3D design and fixed quote with zero obligation.</p>
     <div class="cta-btns reveal">
-      <a href="index.html#contact" class="btn-primary"><span>Book Free Consultation</span> <i class="fa fa-arrow-right"></i></a>
-      <a href="https://wa.me/+918747826666" class="btn-ghost" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
     </div>
   </div>
 </section>
@@ -591,8 +675,8 @@ From bespoke modular kitchens to complete premium home interiors, we create eleg
     </div>
     <div class="footer-col">
       <span class="footer-heading">Legal</span>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms &amp; Conditions</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-and-conditions.html">Terms & Conditions</a>
     </div>
   </div>
   <div class="footer-bottom">
