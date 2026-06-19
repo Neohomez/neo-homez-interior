@@ -17,10 +17,14 @@
   gtag('config', 'G-NFLQ8GWSBG');
 </script>
 
+<script src="nh-chatbot.js" defer></script>
+
 <!-- Preconnect -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+<link rel="dns-prefetch" href="https://images.unsplash.com">
 
 <!-- Fonts non-blocking -->
 <link rel="preload" as="style"
@@ -36,13 +40,13 @@
 
 <style>
 :root{
-  --gold:#C4973A;
+  --gold:#C9A84C;
   --gold-light:#E8C97A;
   --gold-pale:#F9F3E7;
   --gold-dark:#9A7228;
   --white:#FFFFFF;
   --off-white:#FAFAF8;
-  --cream:#F5F0E8;
+  --cream:#F2EDE4;
   --charcoal:#1C1C1C;
   --dark:#111111;
   --grey:#6B6B6B;
@@ -54,47 +58,71 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;font-size:16px}
-body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);overflow-x:hidden}
+body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);overflow-x:hidden;cursor:pointer}
 
 /* Scrollbar */
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:var(--off-white)}
 ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
 
+/* Custom Cursor */
+.cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:99999;transition:transform .15s ease}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid var(--gold);border-radius:50%;pointer-events:none;z-index:99998;transition:transform .3s ease, width .3s, height .3s, opacity .3s;transform:translate(-50%,-50%);opacity:.6}
+.cursor-ring.hover{width:56px;height:56px;opacity:.3}
+
+/* ─── LOADER ─── */
+#loader{position:fixed;inset:0;background:var(--dark);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;transition:opacity .8s ease}
+#loader.done{opacity:0;pointer-events:none}
+.loader-word{font-family:var(--font-display);font-size:2.8rem;font-weight:400;color:var(--white);letter-spacing:.08em}
+.loader-word span{color:var(--gold);font-style:italic}
+.loader-progress{width:180px;height:1px;background:rgba(255,255,255,.15);position:relative;overflow:hidden}
+.loader-fill{position:absolute;inset:0;background:linear-gradient(90deg,var(--gold-dark),var(--gold-light));width:0;animation:lf 1.6s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes lf{to{width:100%}}
+
 /* ─── NAVBAR ─── */
-#nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 60px;height:80px;display:flex;align-items:center;justify-content:space-between;transition:all .4s ease;background:rgba(17,17,17,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(196,151,58,.15)}
-#nav.scrolled{height:68px;box-shadow:0 1px 20px rgba(0,0,0,.1)}
+#nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 60px;height:80px;display:flex;align-items:center;justify-content:space-between;transition:all .4s ease;background:transparent}
+#nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);height:68px;border-bottom:1px solid var(--border);box-shadow:0 1px 20px rgba(0,0,0,.05)}
 .nav-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
 .nav-brand-text{display:flex;flex-direction:column}
-.nav-brand-name{font-family:var(--font-display);font-size:1.15rem;font-weight:600;color:var(--white);line-height:1.1}
-.nav-brand-sub{font-family:var(--font-body);font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-light)}
+.nav-brand-name{font-family:var(--font-display);font-size:1.15rem;font-weight:600;color:var(--white);line-height:1.1;transition:color .3s}
+.nav-brand-sub{font-family:var(--font-body);font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-light);transition:color .3s}
+#nav.scrolled .nav-brand-name{color:var(--charcoal)}
+#nav.scrolled .nav-brand-sub{color:var(--gold)}
 .nav-links{display:flex;align-items:center;gap:4px;list-style:none}
-.nav-links a{font-family:var(--font-body);font-size:.75rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.75);text-decoration:none;padding:8px 16px;position:relative;transition:color .3s}
+.nav-links a{font-family:var(--font-body);font-size:.75rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.85);text-decoration:none;padding:8px 16px;position:relative;transition:color .3s}
 .nav-links a::after{content:'';position:absolute;bottom:4px;left:16px;right:16px;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .3s ease}
 .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
 .nav-links a:hover,.nav-links a.active{color:var(--gold-light)}
-.nav-btn{font-family:var(--font-body);font-size:.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--charcoal);background:var(--gold);border:none;padding:12px 26px;text-decoration:none;transition:all .3s}
-.nav-btn:hover{background:var(--gold-dark);color:var(--white)}
-.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px;cursor:pointer}
+#nav.scrolled .nav-links a{color:var(--charcoal)}
+#nav.scrolled .nav-links a:hover{color:var(--gold)}
+.nav-btn{font-family:var(--font-body);font-size:.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--charcoal);background:var(--gold);border:none;padding:12px 26px;text-decoration:none;transition:all .3s;cursor:none}
+.nav-btn:hover{background:var(--gold-dark);color:var(--white);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
 .hamburger span{display:block;width:24px;height:1.5px;background:var(--white);transition:all .3s}
+#nav.scrolled .hamburger span{background:var(--charcoal)}
 
 /* Mobile Nav */
 .mob-nav{position:fixed;inset:0;background:var(--dark);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:opacity .4s}
 .mob-nav.open{opacity:1;pointer-events:all}
 .mob-nav a{font-family:var(--font-display);font-size:2.4rem;font-weight:400;color:var(--white);text-decoration:none;transition:color .3s}
 .mob-nav a:hover{color:var(--gold)}
-.mob-close{position:absolute;top:28px;right:36px;background:none;border:none;color:var(--white);font-size:2rem;cursor:pointer}
+.mob-close{position:absolute;top:28px;right:36px;background:none;border:none;color:var(--white);font-size:2rem;cursor:none}
 
-/* ─── PAGE HERO ─── */
-.page-hero{padding:160px 60px 80px;background:var(--dark);position:relative;overflow:hidden}
-.page-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0z' fill='none'/%3E%3Cpath d='M20 0v40M0 20h40' stroke='rgba(196,151,58,0.04)' stroke-width='1'/%3E%3C/svg%3E")}
-.page-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent)}
-.page-hero-inner{position:relative;z-index:1;max-width:800px}
+/* ─── PAGE HERO (with ambient slideshow, matching homepage hero language) ─── */
+.page-hero{padding:160px 60px 80px;background:var(--dark);position:relative;overflow:hidden;display:flex;align-items:center;min-height:560px}
+.ph-slides{position:absolute;inset:0;z-index:0}
+.ph-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.05);transition:opacity 1.2s ease,transform 3s ease;will-change:opacity,transform}
+.ph-slide.active{opacity:.5;transform:scale(1)}
+.page-hero::before{content:'';position:absolute;inset:0;z-index:1;background:url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0z' fill='none'/%3E%3Cpath d='M20 0v40M0 20h40' stroke='rgba(196,151,58,0.04)' stroke-width='1'/%3E%3C/svg%3E")}
+.ph-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(105deg,rgba(17,17,17,.92) 0%,rgba(17,17,17,.78) 55%,rgba(196,151,58,.08) 100%)}
+.page-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;z-index:2;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent)}
+.page-hero-inner{position:relative;z-index:2;max-width:800px}
 .page-hero-tag{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-body);font-size:.68rem;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
 .page-hero-tag::before{content:'';width:36px;height:1px;background:var(--gold)}
 .page-hero h1{font-family:var(--font-display);font-size:clamp(2.8rem,6vw,5rem);font-weight:400;color:var(--white);line-height:1.05;margin-bottom:20px}
 .page-hero h1 em{font-style:italic;color:var(--gold-light)}
 .page-hero-sub{font-family:var(--font-body);font-size:1rem;font-weight:300;color:rgba(255,255,255,.6);line-height:1.85;max-width:540px}
+.ph-dots{position:absolute;right:48px;bottom:36px;z-index:2;display:flex;gap:8px}
 
 /* Breadcrumb */
 .breadcrumb{position:relative;z-index:1;display:flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:.72rem;color:rgba(255,255,255,.4);margin-bottom:32px}
@@ -138,7 +166,7 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
 .why-item-title{font-family:var(--font-body);font-size:.9rem;font-weight:600;color:var(--charcoal);margin-bottom:6px}
 .why-item-desc{font-family:var(--font-body);font-size:.82rem;font-weight:300;line-height:1.7;color:var(--grey)}
 
-/* ─── SERVICES ─── */
+/* ─── SERVICES (new: "What We Design") ─── */
 .services-section{padding:100px 60px;background:var(--off-white)}
 .services-title{text-align:center;margin-bottom:70px}
 .services-title h2{font-size:clamp(2.4rem,5vw,4rem);line-height:1;color:var(--charcoal);margin-bottom:20px;font-family:var(--font-display);font-weight:500}
@@ -151,9 +179,9 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
 .service-card h3{font-size:1.5rem;margin-bottom:14px;color:var(--charcoal);font-family:var(--font-display);font-weight:500}
 .service-card p{color:var(--grey);line-height:1.85;font-size:.88rem;font-family:var(--font-body)}
 
-.hdot{width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:transparent;border:none;cursor:pointer;margin:0 6px}
-.hdot::before{content:'';width:10px;height:10px;border-radius:50%;background:#c4973a;transition:all .3s ease}
-.hdot.active::before{width:14px;height:14px;background:#fff;box-shadow:0 0 10px rgba(196,151,58,.6)}
+/* Dots (shared by hero slideshow) */
+.hdot{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.3);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;margin:0;transition:all .3s}
+.hdot.active{background:var(--gold);transform:scale(1.1)}
 
 /* ─── FOUNDER SECTION ─── */
 .founder-section{padding:100px 60px;background:var(--cream)}
@@ -168,13 +196,12 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
 .founder-inner{display:grid;grid-template-columns:240px 1fr;gap:50px;align-items:start}
 .founder-photo-col{position:relative}
 .founder-photo-frame{position:relative}
-.founder-photo-frame::before{content:'';position:absolute;top:-10px;left:-10px;right:-10px;bottom:-10px;border:1px solid var(--gold);z-index:0;}
+.founder-photo-frame::before{content:'';position:absolute;top:-10px;left:-10px;right:-10px;bottom:-10px;border:1px solid var(--gold);z-index:0}
 .founder-photo{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top center;display:block;position:relative;z-index:1}
 .founder-photo-tag{position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--white);font-family:var(--font-body);font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:8px 18px;white-space:nowrap;z-index:2}
 .founder-content{padding-top:4px}
 .founder-content h3{font-size:2rem;margin-bottom:24px;color:var(--charcoal);font-family:var(--font-display);font-weight:bold}
 .founder-content h4{font-size:2rem;margin-bottom:24px;color:var(--charcoal);font-family:var(--font-display);font-weight:bold}
-.founder-content p{font-size:.9rem;line-height:2;color:var(--grey);margin-bottom:20px;font-family:var(--font-body);}
 .founder-content p{font-size:.9rem;line-height:2;color:var(--grey);margin-bottom:20px;font-family:var(--font-body)}
 .signature{margin-top:36px;padding-top:28px;border-top:1px solid var(--border)}
 .signature h4{font-size:1.5rem;color:var(--charcoal);margin-bottom:4px;font-family:var(--font-display)}
@@ -203,35 +230,73 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
 .about-cta h2 em{color:var(--gold);font-style:italic}
 .about-cta p{font-family:var(--font-body);font-size:.95rem;color:rgba(255,255,255,.55);max-width:440px;margin:0 auto 40px;line-height:1.85}
 .cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.btn-primary{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--charcoal);background:var(--gold);border:none;padding:17px 38px;text-decoration:none;transition:all .35s}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--charcoal);background:var(--gold);border:none;padding:17px 38px;text-decoration:none;transition:all .35s;cursor:none}
 .btn-primary:hover{background:var(--gold-dark);color:var(--white);transform:translateY(-2px);box-shadow:0 14px 40px rgba(196,151,58,.35)}
-.btn-ghost{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--white);background:transparent;border:1px solid rgba(255,255,255,.4);padding:16px 36px;text-decoration:none;transition:all .35s}
+.btn-ghost{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--white);background:transparent;border:1px solid rgba(255,255,255,.4);padding:16px 36px;text-decoration:none;transition:all .35s;cursor:none}
 .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
 
-/* ─── FOOTER ─── */
-#footer{background:#050505;padding:60px 60px 30px;color:rgba(255,255,255,.5)}
-.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:50px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.06)}
-.footer-brand-name{font-family:var(--font-display);font-size:1.8rem;font-weight:500;color:var(--white);margin-bottom:4px}
-.footer-brand-sub{font-family:var(--font-body);font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
-.footer-brand-desc{font-family:var(--font-body);font-size:.8rem;line-height:1.85;color:rgba(255,255,255,.38);max-width:260px;margin-bottom:20px}
-.footer-heading{font-family:var(--font-body);font-size:.65rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:block}
+/* ─── FOOTER (matches homepage exactly) ─── */
+#footer{background:#111;color:#fff;padding:40px 40px 15px;font-family:'DM Sans',sans-serif}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px;padding-bottom:30px;border-bottom:1px solid rgba(255,255,255,.06)}
 .footer-col{display:flex;flex-direction:column}
-.footer-col a{font-family:var(--font-body);font-size:.8rem;color:rgba(255,255,255,.45);text-decoration:none;margin-bottom:12px;transition:all .3s}
-.footer-col a:hover{color:var(--gold);padding-left:6px}
-.socials{display:flex;gap:10px;margin-top:4px}
-.social-btn{width:42px;height:42px;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);text-decoration:none;font-size:1rem;transition:all .3s}
-.social-btn:hover{background:var(--gold);border-color:var(--gold);color:var(--white)}
-.footer-bottom{padding:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.footer-copy{font-family:var(--font-body);font-size:.72rem;color:rgba(255,255,255,.2)}
+.footer-brand-name{font-size:28px;font-weight:400;margin-bottom:10px;color:#fff}
+.footer-brand-sub{color:#caa54b;letter-spacing:3px;font-size:12px;text-transform:uppercase;margin-bottom:24px}
+.footer-brand-desc{color:#bdbdbd;line-height:1.6;max-width:320px;margin-bottom:30px}
+.footer-heading{color:#caa54b;font-size:18px;margin-bottom:25px;font-weight:600;display:block}
+.footer-col a{color:#bdbdbd;text-decoration:none;margin-bottom:14px;transition:.3s ease;font-size:15px}
+.footer-col a:hover{color:#caa54b;padding-left:4px}
+.footer-bottom{border-top:1px solid #111;margin-top:30px;padding-top:15px;text-align:center}
+.footer-bottom p{color:#8a8a8a;font-size:14px}
+#footer .socials{display:flex;gap:14px}
+#footer .social-btn{width:46px;height:46px;border:1px solid #333;display:flex;align-items:center;justify-content:center;color:#fff!important;transition:.3s ease}
+#footer .social-btn:hover{background:#caa54b;border-color:#caa54b}
+.socials{display:flex;gap:10px;margin-top:8px}
+.social-btn{width:42px;height:42px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--grey);text-decoration:none;font-size:1rem;transition:all .3s;cursor:pointer}
 
 /* WhatsApp float */
-.wa-float{position:fixed;bottom:36px;right:36px;z-index:500;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1.4rem;text-decoration:none;box-shadow:0 6px 24px rgba(37,211,102,.4);transition:transform .3s}
+.wa-float{position:fixed;bottom:100px;right:36px;z-index:500;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1.4rem;text-decoration:none;box-shadow:0 6px 24px rgba(37,211,102,.4);transition:transform .3s;cursor:pointer}
 .wa-float:hover{transform:scale(1.1)}
 
 /* Back to top */
-#btt{position:fixed;bottom:100px;right:36px;z-index:500;width:48px;height:48px;background:var(--gold);border:none;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1rem;cursor:pointer;opacity:0;pointer-events:none;transition:all .3s}
+#btt{position:fixed;bottom:36px;right:36px;z-index:500;width:48px;height:48px;background:var(--gold);border:none;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1rem;cursor:pointer;opacity:0;pointer-events:none;transition:all .3s}
 #btt.show{opacity:1;pointer-events:all}
 #btt:hover{background:var(--gold-dark);transform:translateY(-4px)}
+
+/* AI Chat */
+#nh-fab{position:fixed;bottom:160px;right:36px;z-index:9100;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#E8C97A);border:none;color:#fff;font-size:1.4rem;cursor:pointer;box-shadow:0 8px 28px rgba(196,151,58,.55);transition:all .3s;display:flex;align-items:center;justify-content:center}
+#nh-fab:hover{transform:scale(1.1)}
+#nh-fab .fab-pulse{position:absolute;top:-3px;right:-3px;width:14px;height:14px;background:#25D366;border-radius:50%;border:2px solid #fff;animation:nhpulse 2s infinite}
+@keyframes nhpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
+#nh-box{position:fixed;bottom:228px;right:36px;z-index:9099;width:360px;border-radius:20px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.22);transform:scale(.85) translateY(20px);opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.34,1.56,.64,1);background:#fff}
+#nh-box.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
+.nh-head{background:linear-gradient(135deg,#9A7228,#C9A84C);padding:16px 18px;display:flex;align-items:center;gap:12px}
+.nh-head-av{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.nh-head-info{flex:1}
+.nh-head-name{font-size:14px;font-weight:600;color:#fff;margin:0}
+.nh-head-status{font-size:11px;color:rgba(255,255,255,.8);margin:2px 0 0;display:flex;align-items:center;gap:5px}
+.nh-head-status::before{content:'';width:7px;height:7px;border-radius:50%;background:#4ADE80;flex-shrink:0}
+.nh-msgs{height:320px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:#F9F7F4;scroll-behavior:smooth}
+.nh-msgs::-webkit-scrollbar{width:3px}
+.nh-msgs::-webkit-scrollbar-thumb{background:#C9A84C;border-radius:3px}
+.nh-msg{max-width:82%;padding:11px 14px;font-size:13px;line-height:1.55;animation:nhpop .25s ease}
+@keyframes nhpop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.nh-msg.bot{background:#fff;border:1px solid #EEE;border-radius:16px 16px 16px 3px;color:#1C1C1C;align-self:flex-start;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.nh-msg.user{background:linear-gradient(135deg,#C9A84C,#9A7228);color:#fff;border-radius:16px 16px 3px 16px;align-self:flex-end}
+.nh-msg.typing{background:#fff;border:1px solid #EEE;border-radius:16px 16px 16px 3px;align-self:flex-start;padding:14px 18px}
+.nh-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#C9A84C;animation:nhdot 1.2s infinite;margin:0 2px}
+.nh-dot:nth-child(2){animation-delay:.2s}
+.nh-dot:nth-child(3){animation-delay:.4s}
+@keyframes nhdot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+.nh-quick{padding:10px 14px;background:#fff;border-top:1px solid #F0EDE8;display:flex;gap:6px;flex-wrap:wrap}
+.nh-qbtn{font-size:11px;padding:6px 12px;border:1.5px solid #C9A84C;border-radius:20px;color:#C9A84C;background:transparent;cursor:pointer;transition:all .2s;white-space:nowrap}
+.nh-qbtn:hover{background:#C9A84C;color:#fff}
+.nh-input-row{display:flex;gap:8px;padding:12px 14px;background:#fff;border-top:1px solid #F0EDE8;align-items:center}
+#nh-input{flex:1;border:1.5px solid #E8E4DC;border-radius:24px;padding:10px 16px;font-size:13px;outline:none;transition:border-color .3s;background:#FAFAF8;color:#1C1C1C}
+#nh-input:focus{border-color:#C9A84C}
+#nh-send{width:38px;height:38px;border-radius:50%;background:#C9A84C;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;transition:all .2s}
+#nh-send:hover{background:#9A7228}
+.nh-powered{text-align:center;font-size:10px;color:#B8B4AC;padding:7px;background:#fff;letter-spacing:.05em}
+@media(max-width:480px){#nh-box{width:calc(100vw - 24px);right:12px;bottom:120px}#nh-fab{bottom:60px;right:16px}}
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:1024px){
@@ -239,6 +304,7 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
   .nav-links,.nav-btn{display:none}
   .hamburger{display:flex}
   .page-hero{padding:130px 32px 60px}
+  .ph-dots{right:32px}
   .stats-bar{grid-template-columns:repeat(2,1fr);padding:36px 32px}
   #why{padding:70px 32px}
   .why-grid{grid-template-columns:1fr;gap:50px}
@@ -252,24 +318,36 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
   .footer-top{grid-template-columns:1fr 1fr}
 }
 @media(max-width:640px){
-  .page-hero{padding:110px 24px 50px}
+  .page-hero{padding:110px 24px 50px;min-height:480px}
   .stats-bar{grid-template-columns:1fr 1fr;padding:28px 24px}
   #why,#brands,.services-section,.founder-section,.about-cta{padding-left:24px;padding-right:24px}
   .footer-top{grid-template-columns:1fr}
-  #footer{padding:40px 24px 20px}
+  #footer{padding:40px 24px 0}
   .founder-inner{grid-template-columns:1fr;gap:36px}
   .founder-photo{aspect-ratio:1/1;object-position:top}
+  .ph-dots{display:none}
 }
 </style>
 </head>
 <body>
 
+<!-- Cursor -->
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="curR"></div>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-word">Neo <span>Homez</span> Interior</div>
+  <div class="loader-progress"><div class="loader-fill"></div></div>
+</div>
+
 <!-- Mobile Nav -->
 <nav class="mob-nav" id="mobNav">
-  <button class="mob-close" onclick="closeMob()">✕</button>
+  <button class="mob-close" onclick="closeMob()" aria-label="Close menu">✕</button>
   <a href="index.html" onclick="closeMob()">Home</a>
   <a href="index.html#rooms" onclick="closeMob()">Our Rooms</a>
   <a href="portfolio.html" onclick="closeMob()">Portfolio</a>
+  <a href="services.html" onclick="closeMob()">Services</a>
   <a href="pricing.html" onclick="closeMob()">Pricing</a>
   <a href="about.html" onclick="closeMob()">About Us</a>
   <a href="contact.html" onclick="closeMob()">Contact</a>
@@ -278,7 +356,7 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
 <!-- Navbar -->
 <nav id="nav">
   <a href="index.html" class="nav-brand">
-    <img src="NH_Logo.webp" alt="Neo Homez Interior Logo" width="60" height="60" loading="eager" style="width:60px;height:60px;object-fit:contain;border-radius:50%;">
+    <img src="NH_Logo.webp" alt="Neo Homez Interior Logo" width="75" height="75" loading="eager" decoding="async" fetchpriority="high" style="width:75px;height:75px;object-fit:contain;border-radius:50%;">
     <div class="nav-brand-text">
       <span class="nav-brand-name">Neo Homez Interior</span>
       <span class="nav-brand-sub">Luxury Design · Bangalore</span>
@@ -302,6 +380,13 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
 
 <!-- ─── PAGE HERO ─── -->
 <section class="page-hero">
+  <div class="ph-slides" aria-hidden="true">
+    <div class="ph-slide active" style="background-image:url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1400&q=60&fm=webp&auto=format')"></div>
+    <div class="ph-slide" style="background-image:url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1400&q=60&fm=webp&auto=format')"></div>
+    <div class="ph-slide" style="background-image:url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1400&q=60&fm=webp&auto=format')"></div>
+    <div class="ph-slide" style="background-image:url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1400&q=60&fm=webp&auto=format')"></div>
+  </div>
+  <div class="ph-overlay"></div>
   <div class="page-hero-inner">
     <div class="breadcrumb">
       <a href="index.html">Home</a>
@@ -314,6 +399,7 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
     From custom modular kitchens to complete luxury home interiors, we design sophisticated spaces that bring together style, comfort, and seamless functionality.
     </p>
   </div>
+  <div class="ph-dots" id="phDots"></div>
 </section>
 
 <!-- ─── STATS BAR ─── -->
@@ -351,6 +437,46 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
   </div>
 </section>
 
+<!-- ─── WHAT WE DESIGN (new section) ─── -->
+<section class="services-section">
+  <div class="services-title reveal">
+    <h2>What We <span>Design</span></h2>
+    <p>From a single modular kitchen to a complete villa interior — every room gets the same attention to detail and the same senior designer from start to finish.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal d1">
+      <div class="service-icon"><i class="fa fa-kitchen-set"></i></div>
+      <h3>Modular Kitchens</h3>
+      <p>Smart layouts, soft-close hardware, and durable finishes built for everyday Bangalore cooking — from compact galley kitchens to full islands.</p>
+    </div>
+    <div class="service-card reveal d2">
+      <div class="service-icon"><i class="fa fa-couch"></i></div>
+      <h3>Living Rooms</h3>
+      <p>Statement seating, considered lighting, and storage that disappears — designed around how your family actually gathers.</p>
+    </div>
+    <div class="service-card reveal d3">
+      <div class="service-icon"><i class="fa fa-bed"></i></div>
+      <h3>Master Bedrooms</h3>
+      <p>Calm palettes, tailored wardrobes, and layouts that prioritise rest — bedrooms that feel like a retreat at the end of the day.</p>
+    </div>
+    <div class="service-card reveal d4">
+      <div class="service-icon"><i class="fa fa-bath"></i></div>
+      <h3>Bathrooms</h3>
+      <p>Water-resistant finishes and premium sanitaryware for spa-inspired bathrooms that work as hard as they look good.</p>
+    </div>
+    <div class="service-card reveal d1">
+      <div class="service-icon"><i class="fa fa-laptop-house"></i></div>
+      <h3>Home Offices</h3>
+      <p>Dedicated work zones with proper storage, cable management, and lighting that doesn't fight your screen.</p>
+    </div>
+    <div class="service-card reveal d2">
+      <div class="service-icon"><i class="fa fa-house"></i></div>
+      <h3>Full Home Interiors</h3>
+      <p>End-to-end design and execution across every room — one designer, one timeline, one point of accountability.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ─── FOUNDER VISION MISSION ─── -->
 <section class="founder-section">
   <div class="founder-container">
@@ -365,7 +491,6 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
         <!-- PHOTO COLUMN -->
         <div class="founder-photo-col">
           <div class="founder-photo-frame">
-            <!-- Replace "founder.jpeg" with your actual image filename/path -->
             <img
               src="Founder.webp"
               alt="Founder – Neo Homez Interior"
@@ -377,25 +502,24 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
           </div>
         </div>
 
-        
-        
-<!-- CONTENT COLUMN -->
+        <!-- CONTENT COLUMN -->
         <div class="founder-content">
           <h3>A Message from Founder</h3>
           <p>Every project at Neo Homez begins with a simple question: <em>how does this family actually live?</em> Not how homes look in magazines — but how mornings unfold in this kitchen, how evenings happen in this living room, and what storage this family will actually use five years from now.</p>
           <p>Touheed Ahmed founded Neo Homez Interior with a conviction that Bangalore homeowners deserved better — better transparency, better materials, and better project management — from their interior designers. Too many clients had experienced cost surprises, missed deadlines, and designs that looked nothing like the renders they approved.</p>
           <p>With over 10+ years of experience across 15+ residential and commercial projects in Bangalore, Touheed has led interior transformations from 1BHK apartments in Indiranagar to 5BHK villas on Sarjapur Road. His design philosophy balances contemporary aesthetics with practical functionality — spaces that are beautiful to look at and genuinely easy to live in.</p>
           <p>Every Neo Homez project is personally overseen by Touheed, not delegated to a junior designer. That personal accountability is why our clients refer us to their neighbours, colleagues, and family.</p>
-             <h4>Design philosophy</h4>
-    <p>"A home should feel like it was made for the person who lives there — not for a design portfolio. My job is to listen carefully enough to understand who you are, and then design a space that reflects that completely."</p>
 
-    <h4>Why Neo Homez exists</h4>
-    <p>1. <em>No more cost surprises</em><br><em>Every project starts with a detailed, fixed quote. We've never charged a client more than what they signed</em> Every project starts with a detailed, fixed quote. We've never charged a client more than what they signed.</p>
-            <p>2. <em>Real materials, real brands</em><br><em>Hafele, Hettich, Greenply — not cheap substitutes that fail in two years. We document every material used.
-            <p>3. <em>One point of contact</em><br><em>You deal with one person from start to finish. No passing the buck between design, vendor, and execution teams.
-            <p>4. <em>Bangalore-first design</em><br><em>We understand Bangalore apartments — the layouts, the light, the climate, and what works in this city's homes.
-            <!-- Update with your name and title below -->
-              <!-- Update with your name and title below -->  
+          <h4>Design philosophy</h4>
+          <p>"A home should feel like it was made for the person who lives there — not for a design portfolio. My job is to listen carefully enough to understand who you are, and then design a space that reflects that completely."</p>
+
+          <h4>Why Neo Homez exists</h4>
+          <p>1. <em>No more cost surprises</em><br>Every project starts with a detailed, fixed quote. We've never charged a client more than what they signed.</p>
+          <p>2. <em>Real materials, real brands</em><br>Hafele, Hettich, Greenply — not cheap substitutes that fail in two years. We document every material used.</p>
+          <p>3. <em>One point of contact</em><br>You deal with one person from start to finish. No passing the buck between design, vendor, and execution teams.</p>
+          <p>4. <em>Bangalore-first design</em><br>We understand Bangalore apartments — the layouts, the light, the climate, and what works in this city's homes.</p>
+
+          <div class="signature">
             <h4>TOUHEED AHMED</h4>
             <span>Founder &amp; Creative Director</span>
           </div>
@@ -457,10 +581,10 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
       <div class="footer-brand-sub">Luxury Interior Design · Bangalore</div>
       <p class="footer-brand-desc">Crafting extraordinary homes with elegance, precision, and modern luxury interiors.</p>
       <div class="socials">
-        <a href="https://instagram.com/neohomezinterior" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-instagram"></i></a>
-        <a href="https://facebook.com/neohomezinterior" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://linkedin.com/company/neohomezinterior" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://wa.me/918747826666" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://instagram.com/neohomezinterior" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Visit Neo Homez Interior Instagram page"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+        <a href="https://facebook.com/neohomezinterior" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Visit Neo Homez Interior Facebook page"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="https://linkedin.com/company/neohomezinterior" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Visit Neo Homez Interior LinkedIn page"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="https://wa.me/918747826666" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Chat with Neo Homez Interior on WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
       </div>
     </div>
     <div class="footer-col">
@@ -475,25 +599,79 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
     <div class="footer-col">
       <span class="footer-heading">Legal</span>
       <a href="privacy-policy.html">Privacy Policy</a>
-      <a href="terms-and-conditions.html">Terms & Conditions</a>
+      <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">© 2026 Neo Homez Interior. All Rights Reserved.</p>
+    <p>© 2026 Neo Homez Interior. All Rights Reserved.</p>
   </div>
 </footer>
-
-<!-- WhatsApp float -->
-<a href="https://wa.me/+918747826666" class="wa-float" target="_blank" aria-label="Chat on WhatsApp">
-  <i class="fab fa-whatsapp"></i>
-</a>
 
 <!-- Back to top -->
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
   <i class="fa fa-arrow-up"></i>
 </button>
 
+<!-- AI Chat FAB -->
+<button id="nh-fab" onclick="nhToggle()" aria-label="Chat with Neo Homez">
+  <span>💬</span>
+  <span class="fab-pulse"></span>
+</button>
+<div id="nh-box">
+  <div class="nh-head">
+    <div class="nh-head-av">🏠</div>
+    <div class="nh-head-info">
+      <p class="nh-head-name">Aria — Neo Homez Assistant</p>
+      <p class="nh-head-status">Online · Replies instantly</p>
+    </div>
+  </div>
+  <div class="nh-msgs" id="nh-msgs"></div>
+  <div class="nh-quick" id="nh-quick">
+    <button class="nh-qbtn" onclick="nhQuick('What are your pricing packages?')">💰 Pricing</button>
+    <button class="nh-qbtn" onclick="nhQuick('What services do you offer?')">🛋️ Services</button>
+    <button class="nh-qbtn" onclick="nhQuick('How long does a project take?')">⏱️ Timeline</button>
+    <button class="nh-qbtn" onclick="nhQuick('I want to book a free consultation')">📅 Book Now</button>
+    <button class="nh-qbtn" onclick="nhQuick('Which areas in Bangalore do you serve?')">📍 Areas</button>
+    <button class="nh-qbtn" onclick="nhQuick('What warranty do you provide?')">🛡️ Warranty</button>
+  </div>
+  <div class="nh-input-row">
+    <input id="nh-input" placeholder="Ask me anything about interiors…" onkeydown="if(event.key==='Enter')nhSend()"/>
+    <button id="nh-send" onclick="nhSend()">➤</button>
+  </div>
+  <div class="nh-powered">Powered by AI · Neo Homez Interior</div>
+</div>
+
+<!-- WhatsApp float -->
+<a href="https://wa.me/+918747826666" class="wa-float" target="_blank" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
 <script>
+/* Loader */
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    document.getElementById('loader').classList.add('done');
+    setTimeout(()=>document.getElementById('loader').remove(),900);
+  },1800);
+});
+
+/* Cursor */
+const cur=document.getElementById('cur');
+const curR=document.getElementById('curR');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',(e)=>{
+  mx=e.clientX; my=e.clientY;
+  requestAnimationFrame(()=>{ cur.style.transform=`translate(${mx-4}px,${my-4}px)`; });
+});
+function animR(){
+  rx+=(mx-rx-18)*.12; ry+=(my-ry-18)*.12;
+  curR.style.transform=`translate(${rx}px,${ry}px)`;
+  requestAnimationFrame(animR);
+}
+requestAnimationFrame(animR);
+document.addEventListener('mouseover',(e)=>{ if(e.target.closest('a,button,.why-item,.service-card,.mission-card,.hdot')) curR.classList.add('hover'); });
+document.addEventListener('mouseout',(e)=>{ if(e.target.closest('a,button,.why-item,.service-card,.mission-card,.hdot')) curR.classList.remove('hover'); });
+
 /* Navbar scroll */
 const nav = document.getElementById('nav');
 const btt = document.getElementById('btt');
@@ -506,11 +684,141 @@ window.addEventListener('scroll', () => {
 function openMob(){document.getElementById('mobNav').classList.add('open')}
 function closeMob(){document.getElementById('mobNav').classList.remove('open')}
 
+/* Page hero ambient slideshow */
+const phSlides=document.querySelectorAll('.ph-slide');
+const phDotsC=document.getElementById('phDots');
+let phCur=0;
+phSlides.forEach((_,i)=>{
+  const b=document.createElement('button');
+  b.className='hdot'+(i===0?' active':'');
+  b.setAttribute('aria-label','Go to slide '+(i+1));
+  b.setAttribute('type','button');
+  b.onclick=()=>phGoSlide(i);
+  phDotsC.appendChild(b);
+});
+function phGoSlide(n){
+  phSlides[phCur].classList.remove('active');
+  phDotsC.children[phCur].classList.remove('active');
+  phCur=(n+phSlides.length)%phSlides.length;
+  phSlides[phCur].classList.add('active');
+  phDotsC.children[phCur].classList.add('active');
+}
+setInterval(()=>phGoSlide(phCur+1),6000);
+
 /* Scroll reveal */
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); });
 }, {threshold:.1, rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el => obs.observe(el));
+
+/* AI Chatbot */
+const NH_SYSTEM=`You are Aria, the friendly AI assistant for Neo Homez Interior — a premium residential interior design company in Bangalore, India.
+
+SERVICES: Full Home Interior, Modular Kitchen, Living Room, Master Bedroom, Kids Room, Bathroom, Home Office, Foyer, Balcony, Full Villa.
+
+PRICING:
+- Essential: ₹1,200/sqft — 1-2BHK, kitchen+1 bedroom, standard materials, 30-day delivery, 6-month warranty
+- Premium: ₹1,800/sqft — 3BHK full home, Hafele/Hettich hardware, 45-day delivery, 1-year warranty, project manager (MOST POPULAR)
+- Luxury: ₹2,500/sqft — Villas/penthouses, bespoke design, imported materials, senior designer, 60-day delivery, 2-year warranty
+
+CURRENT OFFER: Free 3D design + 10% off full home package. Ends June 30 2026.
+
+AREAS: Whitefield, Koramangala, HSR Layout, Indiranagar, Jayanagar, JP Nagar, Sarjapur Road, Electronic City, Hebbal, Yelahanka, Bannerghatta Road, Marathahalli, Bellandur, BTM Layout — all of Bangalore.
+
+TIMELINES: Full home 45-60 days, single room 15-20 days, kitchen only 10-15 days.
+
+CONTACT: +91 87478 26666, info@neohomezinterior.in
+
+RULES:
+- Keep replies to 2-4 sentences
+- Always end with a call-to-action
+- Never make up facts not listed above`;
+
+let nhHistory=[];
+let nhOpen=false;
+let nhInit=false;
+
+window.nhToggle=function(){
+  nhOpen=!nhOpen;
+  const box=document.getElementById('nh-box');
+  box.classList.toggle('open',nhOpen);
+  document.querySelector('#nh-fab span').textContent=nhOpen?'✕':'💬';
+  if(nhOpen&&!nhInit){
+    nhInit=true;
+    setTimeout(()=>nhBotMsg("Hi there! 👋 I'm Aria, your Neo Homez design consultant.\n\nI can help with pricing, services, timelines, and booking your free consultation. What would you like to know?"),400);
+  }
+};
+
+window.nhQuick=function(q){
+  document.getElementById('nh-quick').style.display='none';
+  nhUserMsg(q); nhGetReply(q);
+};
+
+window.nhSend=function(){
+  const input=document.getElementById('nh-input');
+  const text=input.value.trim();
+  if(!text) return;
+  input.value='';
+  document.getElementById('nh-quick').style.display='none';
+  nhUserMsg(text); nhGetReply(text);
+};
+
+/* Scroll-to-bottom helper: deferred to next frame so the scrollHeight read
+   never forces a synchronous layout right after appendChild. */
+function nhScrollToBottom(){
+  const msgs=document.getElementById('nh-msgs');
+  requestAnimationFrame(()=>{ msgs.scrollTop = msgs.scrollHeight; });
+}
+
+function nhUserMsg(text){
+  nhHistory.push({role:'user',content:text});
+  const msgs=document.getElementById('nh-msgs');
+  const d=document.createElement('div');
+  d.className='nh-msg user'; d.textContent=text;
+  msgs.appendChild(d); nhScrollToBottom();
+}
+
+function nhBotMsg(text){
+  const msgs=document.getElementById('nh-msgs');
+  const d=document.createElement('div');
+  d.className='nh-msg bot'; d.style.whiteSpace='pre-line'; d.textContent=text;
+  msgs.appendChild(d); nhScrollToBottom();
+  nhHistory.push({role:'assistant',content:text});
+}
+
+function nhShowTyping(){
+  const msgs=document.getElementById('nh-msgs');
+  const d=document.createElement('div');
+  d.className='nh-msg typing'; d.id='nh-typing';
+  d.innerHTML='<span class="nh-dot"></span><span class="nh-dot"></span><span class="nh-dot"></span>';
+  msgs.appendChild(d); nhScrollToBottom();
+}
+
+function nhRemoveTyping(){ const t=document.getElementById('nh-typing'); if(t) t.remove(); }
+
+async function nhGetReply(text){
+  nhShowTyping();
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key':'YOUR_API_KEY_HERE',
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-calls':'true'
+      },
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:NH_SYSTEM,messages:nhHistory.slice(-10)})
+    });
+    const data=await res.json();
+    nhRemoveTyping();
+    const reply=data.content?.[0]?.text||'Please call us at +91 87478 26666 or WhatsApp us!';
+    nhBotMsg(reply);
+  }catch(e){
+    nhRemoveTyping();
+    nhBotMsg('Sorry, I seem to be offline! Please call +91 87478 26666 or WhatsApp us directly. 🙏');
+  }
+}
 </script>
+<script src="nh-chatbot.js"></script>
 </body>
 </html>
