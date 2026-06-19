@@ -92,13 +92,13 @@ content="Neo Homez Interior - Premium residential interior design in Bangalore. 
 <style>
   
 :root{
-  --gold:#C4973A;
+  --gold:#C9A84C;
   --gold-light:#E8C97A;
   --gold-pale:#F9F3E7;
   --gold-dark:#9A7228;
   --white:#FFFFFF;
   --off-white:#FAFAF8;
-  --cream:#F5F0E8;
+  --cream:#F2EDE4;
   --charcoal:#1C1C1C;
   --dark:#111111;
   --grey:#6B6B6B;
@@ -466,20 +466,51 @@ body{font-family:var(--font-body);background:var(--white);color:var(--charcoal);
 .faq-item.open .faq-a{max-height:300px}
 .faq-a-inner{font-family:var(--font-body);font-size:.85rem;font-weight:300;line-height:1.8;color:var(--grey);padding:0 0 22px}
 
-/* ─── CTA BAND ─── */
-#cta{position:relative;padding:120px 60px;background:var(--dark);overflow:hidden;text-align:center}
-#cta::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0z' fill='none'/%3E%3Cpath d='M20 0v40M0 20h40' stroke='rgba(196,151,58,0.04)' stroke-width='1'/%3E%3C/svg%3E")}
-.cta-topbar{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent)}
-.cta-eyebrow{font-family:var(--font-body);font-size:.65rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
-.cta-h{font-family:var(--font-display);font-size:clamp(2.4rem,5.5vw,4.8rem);font-weight:400;color:var(--white);line-height:1.1;margin-bottom:20px}
-.cta-h em{font-style:italic;color:var(--gold)}
-.cta-p{font-family:var(--font-body);font-size:.95rem;font-weight:300;color:rgba(255,255,255,.55);max-width:440px;margin:0 auto 48px;line-height:1.85}
-.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:36px}
-.cta-contact{display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap}
-.cta-contact-item{display:flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:.82rem;color:rgba(255,255,255,.5)}
-.cta-contact-item i{color:var(--gold)}
-.cta-contact-item a{color:rgba(255,255,255,.8);text-decoration:none;transition:color .3s}
-.cta-contact-item a:hover{color:var(--gold)}
+/* ─── CTA SECTION ─── */
+  .cta-section {
+    background: var(--charcoal);
+    padding: 120px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.08);
+  }
+  .cta-section::after {
+    content: '';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.12);
+  }
+  .cta-content { position: relative; z-index: 2; }
+  .cta-section .eyebrow { color: var(--gold-light); }
+  .cta-section .section-title { color: #fff; max-width: 680px; margin: 0 auto 16px; text-align: center; }
+  .cta-section p { color: rgba(255,255,255,0.5); font-size: 16px; margin-bottom: 40px; font-weight: 300; }
+  .cta-buttons {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  }
+  .btn-whatsapp {
+    background: #25D366;
+    color: #fff;
+    padding: 16px 32px;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 10px;
+    transition: all 0.25s;
+  }
+  .btn-whatsapp:hover { background: #1ebe5a; transform: translateY(-2px); }
 
 /* ─── CONTACT ─── */
 #contact{padding:100px 60px;background:var(--off-white)}
@@ -508,7 +539,7 @@ select.fi{appearance:none;cursor:pointer}
 .form-note{font-family:var(--font-body);font-size:.72rem;color:var(--grey);text-align:center;margin-top:14px}
 
 /* ─── FOOTER ─── */
-#footer{background:#050505;color:#fff;padding:40px 40px 15px;font-family:'DM Sans',sans-serif;}
+#footer{background:#111;color:#fff;padding:40px 40px 15px;font-family:'DM Sans',sans-serif;}
 .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px;padding-bottom:30px;border-bottom:1px solid rgba(255,255,255,.06)}
 .footer-col{display:flex;flex-direction:column;}
 .footer-brand-name{font-size:28px;font-weight:400;margin-bottom:10px;color:#fff;}
@@ -517,7 +548,7 @@ select.fi{appearance:none;cursor:pointer}
 .footer-heading{color:#caa54b;font-size:18px;margin-bottom:25px;font-weight:600;}
 .footer-col a{color:#bdbdbd;text-decoration:none;margin-bottom:14px;transition:0.3s ease;font-size:15px;}
 .footer-col a:hover{color:#caa54b;padding-left:4px;}
-.footer-bottom{border-top:1px solid #1a1a1a;margin-top:30px;padding-top:15px;text-align:center;}
+.footer-bottom{border-top:1px solid #111;margin-top:30px;padding-top:15px;text-align:center;}
 .footer-bottom p{color:#8a8a8a;font-size:14px;}
 #footer .socials{display:flex;gap:14px;}
 #footer .social-btn{width:46px;height:46px;border:1px solid #333;display:flex;align-items:center;justify-content:center;color:#fff !important;transition:0.3s ease;}
@@ -533,13 +564,13 @@ select.fi{appearance:none;cursor:pointer}
 .wa-float:hover{transform:scale(1.1)}
 
 /* AI Chat */
-#nh-fab{position:fixed;bottom:160px;right:36px;z-index:9100;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#C4973A,#E8C97A);border:none;color:#fff;font-size:1.4rem;cursor:pointer;box-shadow:0 8px 28px rgba(196,151,58,.55);transition:all .3s;display:flex;align-items:center;justify-content:center}
+#nh-fab{position:fixed;bottom:160px;right:36px;z-index:9100;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#E8C97A);border:none;color:#fff;font-size:1.4rem;cursor:pointer;box-shadow:0 8px 28px rgba(196,151,58,.55);transition:all .3s;display:flex;align-items:center;justify-content:center}
 #nh-fab:hover{transform:scale(1.1)}
 #nh-fab .fab-pulse{position:absolute;top:-3px;right:-3px;width:14px;height:14px;background:#25D366;border-radius:50%;border:2px solid #fff;animation:nhpulse 2s infinite}
 @keyframes nhpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
 #nh-box{position:fixed;bottom:228px;right:36px;z-index:9099;width:360px;border-radius:20px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.22);transform:scale(.85) translateY(20px);opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.34,1.56,.64,1);background:#fff}
 #nh-box.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
-.nh-head{background:linear-gradient(135deg,#9A7228,#C4973A);padding:16px 18px;display:flex;align-items:center;gap:12px}
+.nh-head{background:linear-gradient(135deg,#9A7228,#C9A84C);padding:16px 18px;display:flex;align-items:center;gap:12px}
 .nh-head-av{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
 .nh-head-info{flex:1}
 .nh-head-name{font-size:14px;font-weight:600;color:#fff;margin:0}
@@ -547,23 +578,23 @@ select.fi{appearance:none;cursor:pointer}
 .nh-head-status::before{content:'';width:7px;height:7px;border-radius:50%;background:#4ADE80;flex-shrink:0}
 .nh-msgs{height:320px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:#F9F7F4;scroll-behavior:smooth}
 .nh-msgs::-webkit-scrollbar{width:3px}
-.nh-msgs::-webkit-scrollbar-thumb{background:#C4973A;border-radius:3px}
+.nh-msgs::-webkit-scrollbar-thumb{background:#C9A84C;border-radius:3px}
 .nh-msg{max-width:82%;padding:11px 14px;font-size:13px;line-height:1.55;animation:nhpop .25s ease}
 @keyframes nhpop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .nh-msg.bot{background:#fff;border:1px solid #EEE;border-radius:16px 16px 16px 3px;color:#1C1C1C;align-self:flex-start;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.nh-msg.user{background:linear-gradient(135deg,#C4973A,#9A7228);color:#fff;border-radius:16px 16px 3px 16px;align-self:flex-end}
+.nh-msg.user{background:linear-gradient(135deg,#C9A84C,#9A7228);color:#fff;border-radius:16px 16px 3px 16px;align-self:flex-end}
 .nh-msg.typing{background:#fff;border:1px solid #EEE;border-radius:16px 16px 16px 3px;align-self:flex-start;padding:14px 18px}
-.nh-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#C4973A;animation:nhdot 1.2s infinite;margin:0 2px}
+.nh-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#C9A84C;animation:nhdot 1.2s infinite;margin:0 2px}
 .nh-dot:nth-child(2){animation-delay:.2s}
 .nh-dot:nth-child(3){animation-delay:.4s}
 @keyframes nhdot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
 .nh-quick{padding:10px 14px;background:#fff;border-top:1px solid #F0EDE8;display:flex;gap:6px;flex-wrap:wrap}
-.nh-qbtn{font-size:11px;padding:6px 12px;border:1.5px solid #C4973A;border-radius:20px;color:#C4973A;background:transparent;cursor:pointer;transition:all .2s;white-space:nowrap}
-.nh-qbtn:hover{background:#C4973A;color:#fff}
+.nh-qbtn{font-size:11px;padding:6px 12px;border:1.5px solid #C9A84C;border-radius:20px;color:#C9A84C;background:transparent;cursor:pointer;transition:all .2s;white-space:nowrap}
+.nh-qbtn:hover{background:#C9A84C;color:#fff}
 .nh-input-row{display:flex;gap:8px;padding:12px 14px;background:#fff;border-top:1px solid #F0EDE8;align-items:center}
 #nh-input{flex:1;border:1.5px solid #E8E4DC;border-radius:24px;padding:10px 16px;font-size:13px;outline:none;transition:border-color .3s;background:#FAFAF8;color:#1C1C1C}
-#nh-input:focus{border-color:#C4973A}
-#nh-send{width:38px;height:38px;border-radius:50%;background:#C4973A;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;transition:all .2s}
+#nh-input:focus{border-color:#C9A84C}
+#nh-send{width:38px;height:38px;border-radius:50%;background:#C9A84C;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;transition:all .2s}
 #nh-send:hover{background:#9A7228}
 .nh-powered{text-align:center;font-size:10px;color:#B8B4AC;padding:7px;background:#fff;letter-spacing:.05em}
 @media(max-width:480px){#nh-box{width:calc(100vw - 24px);right:12px;bottom:120px}#nh-fab{bottom:60px;right:16px}}
@@ -903,20 +934,22 @@ select.fi{appearance:none;cursor:pointer}
   </div>
 </section>
 
-<!-- ─── CTA ─── -->
-<section id="cta">
-  <div class="cta-topbar"></div>
-  <div class="cta-eyebrow reveal">Ready to Transform Your Home?</div>
-  <h2 class="cta-h reveal">150 Bangalore Homes<br><em>Transformed. Yours Next.</em></h2>
-  <p class="cta-p reveal">Book a free design consultation with our Bangalore experts. No commitments, just ideas.</p>
-  <div class="cta-btns reveal">
-    <a href="contact.html" class="btn-primary"><span>Book Free Consultation</span> <i class="fa fa-arrow-right"></i></a>
-    <a href="https://wa.me/+918747826666" class="btn-ghost" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
-  </div>
-  <div class="cta-contact reveal">
-    <div class="cta-contact-item"><i class="fa fa-phone"></i> <a href="tel:+918747826666">+91 87478 26666</a></div>
-    <div class="cta-contact-item"><i class="fa fa-envelope"></i> <a href="mailto:info@neohomezinterior.in">info@neohomezinterior.in</a></div>
-    <div class="cta-contact-item"><i class="fa fa-globe"></i> <a href="https://neohomezinterior.in" target="_blank">neohomezinterior.in</a></div>
+<!-- CTA Section -->
+<section class="cta-section">
+  <div class="cta-content reveal">
+    <span class="eyebrow">Ready to Begin?</span>
+    <h2 class="section-title"><em><strong>Your Dream Home</strong></em> <br><em>Is One Call Away</em></h2>
+    <p>Book a free design consultation with our Bangalore experts.<br>No commitments, just ideas.</p>
+    <div class="cta-buttons">
+      <a href="#contact" class="btn-primary">
+        Book Free Consultation
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="https://wa.me/918747826666" class="btn-whatsapp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.986 0C5.377 0 .013 5.357.013 11.957c0 2.107.554 4.133 1.607 5.925L0 24l6.302-1.602A11.934 11.934 0 0 0 11.986 24C18.594 24 24 18.643 24 12.043 24 5.443 18.594 0 11.986 0zm0 21.87a9.842 9.842 0 0 1-5.019-1.371l-.36-.214-3.737.98.999-3.641-.235-.374a9.785 9.785 0 0 1-1.504-5.293c0-5.415 4.407-9.817 9.856-9.817 5.45 0 9.856 4.402 9.856 9.817S17.435 21.87 11.986 21.87z"/></svg>
+        WhatsApp Us
+      </a>
+    </div>
   </div>
 </section>
 
@@ -1224,19 +1257,28 @@ window.nhSend=function(){
   nhUserMsg(text); nhGetReply(text);
 };
 
+/* PERF FIX: scroll-to-bottom helper.
+   Reading scrollHeight immediately after appendChild forces a synchronous
+   layout (forced reflow). Deferring the read to the next animation frame
+   lets the browser flush layout naturally instead of being forced mid-script. */
+function nhScrollToBottom(){
+  const msgs=document.getElementById('nh-msgs');
+  requestAnimationFrame(()=>{ msgs.scrollTop = msgs.scrollHeight; });
+}
+
 function nhUserMsg(text){
   nhHistory.push({role:'user',content:text});
   const msgs=document.getElementById('nh-msgs');
   const d=document.createElement('div');
   d.className='nh-msg user'; d.textContent=text;
-  msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight;
+  msgs.appendChild(d); nhScrollToBottom();
 }
 
 function nhBotMsg(text){
   const msgs=document.getElementById('nh-msgs');
   const d=document.createElement('div');
   d.className='nh-msg bot'; d.style.whiteSpace='pre-line'; d.textContent=text;
-  msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight;
+  msgs.appendChild(d); nhScrollToBottom();
   nhHistory.push({role:'assistant',content:text});
 }
 
@@ -1245,7 +1287,7 @@ function nhShowTyping(){
   const d=document.createElement('div');
   d.className='nh-msg typing'; d.id='nh-typing';
   d.innerHTML='<span class="nh-dot"></span><span class="nh-dot"></span><span class="nh-dot"></span>';
-  msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight;
+  msgs.appendChild(d); nhScrollToBottom();
 }
 
 function nhRemoveTyping(){ const t=document.getElementById('nh-typing'); if(t) t.remove(); }
